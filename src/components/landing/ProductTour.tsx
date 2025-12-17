@@ -11,11 +11,6 @@ const tabs = [
   { id: "track", label: "Track", icon: BarChart3 },
 ];
 
-const rainbowColors = [
-    "#FF0080", "#FF8C00", "#FFD700", "#40E0D0", "#7B61FF", 
-    "#FF0080", "#FF8C00", "#FFD700", "#40E0D0", "#7B61FF"
-];
-
 const content = {
   speak: (
     <div className="bg-white rounded-[2rem] shadow-xl border-2 border-black p-8 h-full flex flex-col justify-center items-center text-center space-y-6 relative overflow-hidden">
@@ -29,24 +24,62 @@ const content = {
       </div>
       <p className="text-2xl font-bold text-black italic">"I would like to order a coffee."</p>
       
-      {/* Rainbow Waveform */}
-      <div className="h-16 flex items-center justify-center space-x-1.5">
-        {[...Array(10)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="w-3 rounded-full border border-black/10"
-            style={{ backgroundColor: rainbowColors[i] }}
-            animate={{
-              height: [20, 40 + Math.random() * 40, 20],
-            }}
-            transition={{
-              duration: 0.6,
-              repeat: Infinity,
-              delay: i * 0.1,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+      {/* Rainbow Wave Line Animation */}
+      <div className="w-full h-16 flex items-center justify-center">
+        <svg width="100%" height="100%" viewBox="0 0 300 60" preserveAspectRatio="none" className="overflow-visible">
+            <defs>
+                <linearGradient id="rainbowLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#FF0080" />
+                    <stop offset="25%" stopColor="#FF8C00" />
+                    <stop offset="50%" stopColor="#FFD700" />
+                    <stop offset="75%" stopColor="#40E0D0" />
+                    <stop offset="100%" stopColor="#7B61FF" />
+                </linearGradient>
+            </defs>
+            {/* Core Wave */}
+            <motion.path
+                d="M0,30 Q75,30 150,30 T300,30"
+                animate={{
+                    d: [
+                        "M0,30 Q37.5,10 75,30 T150,30 T225,50 T300,30",
+                        "M0,30 Q37.5,50 75,30 T150,30 T225,10 T300,30",
+                        "M0,30 Q37.5,20 75,30 T150,30 T225,40 T300,30",
+                        "M0,30 Q37.5,10 75,30 T150,30 T225,50 T300,30"
+                    ]
+                }}
+                transition={{
+                    repeat: Infinity,
+                    duration: 2,
+                    ease: "linear"
+                }}
+                fill="none"
+                stroke="url(#rainbowLine)"
+                strokeWidth="6"
+                strokeLinecap="round"
+            />
+            {/* Secondary Echo Wave (Opacity) */}
+            <motion.path
+                d="M0,30 Q75,30 150,30 T300,30"
+                animate={{
+                    d: [
+                        "M0,30 Q37.5,50 75,30 T150,30 T225,10 T300,30",
+                        "M0,30 Q37.5,10 75,30 T150,30 T225,50 T300,30",
+                        "M0,30 Q37.5,40 75,30 T150,30 T225,20 T300,30",
+                        "M0,30 Q37.5,50 75,30 T150,30 T225,10 T300,30"
+                    ]
+                }}
+                transition={{
+                    repeat: Infinity,
+                    duration: 3,
+                    ease: "linear"
+                }}
+                fill="none"
+                stroke="url(#rainbowLine)"
+                strokeWidth="3"
+                strokeOpacity="0.4"
+                strokeLinecap="round"
+            />
+        </svg>
       </div>
     </div>
   ),

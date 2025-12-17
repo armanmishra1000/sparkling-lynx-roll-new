@@ -102,21 +102,44 @@ const Hero = () => {
                
                <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-black rounded-full flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">S</div>
+                    <div className="relative">
+                        <motion.div 
+                            animate={{ scale: [1, 1.1, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute inset-0 bg-primary/30 rounded-full"
+                        />
+                        <div className="relative w-14 h-14 bg-black rounded-full flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg z-10">S</div>
+                    </div>
                     <div>
                       <h3 className="font-bold text-lg leading-none">Sophie</h3>
                       <span className="text-xs font-bold text-pink-600 uppercase tracking-widest">Live Coaching</span>
                     </div>
                   </div>
-                  <div className="flex gap-1.5">
-                    {[1,2,3].map(i => (
-                      <motion.div 
-                        key={i} 
-                        className="w-2 bg-black rounded-full"
-                        animate={{ height: [10, 25, 10] }}
-                        transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
-                      />
-                    ))}
+                  {/* Mini Wave Line */}
+                  <div className="w-16 h-8">
+                     <svg width="100%" height="100%" viewBox="0 0 60 20" preserveAspectRatio="none">
+                         <defs>
+                            <linearGradient id="miniRainbow" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#FF0080" />
+                                <stop offset="100%" stopColor="#7B61FF" />
+                            </linearGradient>
+                         </defs>
+                         <motion.path 
+                            d="M0,10 Q15,10 30,10 T60,10"
+                            animate={{
+                                d: [
+                                    "M0,10 Q15,0 30,10 T60,10",
+                                    "M0,10 Q15,20 30,10 T60,10",
+                                    "M0,10 Q15,0 30,10 T60,10"
+                                ]
+                            }}
+                            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                            fill="none"
+                            stroke="url(#miniRainbow)"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                         />
+                     </svg>
                   </div>
                </div>
 
