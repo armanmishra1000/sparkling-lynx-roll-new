@@ -46,9 +46,9 @@ const HowItWorks = () => {
 
         <div className="relative">
           {/* Central Line - Precisely Centered */}
-          <div className="absolute left-[27px] md:left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-transparent via-gray-200 to-transparent md:-translate-x-1/2 rounded-full"></div>
+          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-gray-200 to-transparent md:-translate-x-1/2"></div>
           
-          <div className="space-y-24">
+          <div className="space-y-12 md:space-y-24">
             {steps.map((step, index) => (
               <motion.div 
                 key={index}
@@ -56,20 +56,22 @@ const HowItWorks = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-24 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+                className={`relative flex flex-col md:flex-row items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
               >
-                {/* Icon Node */}
-                <div className="relative shrink-0 z-10 md:w-1/2 flex md:justify-end justify-start">
+                {/* Connector Dot - Absolutely Centered on the Timeline */}
+                <div className={`hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}>
+                   <div className={`w-4 h-4 rounded-full border-2 border-white shadow-sm bg-gradient-to-br ${step.gradient}`}></div>
+                </div>
+
+                {/* Icon Side */}
+                <div className={`w-full md:w-1/2 flex ${index % 2 !== 0 ? 'md:justify-start md:pl-24' : 'md:justify-end md:pr-24'} justify-start pl-0 mb-4 md:mb-0`}>
                    <div className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center shadow-lg border-4 border-white ring-1 ring-black/5 relative z-10`}>
                       <step.icon className="w-6 h-6" />
-                      
-                      {/* Connector Dot for Desktop Center Line - Pushed to edge to overlap line */}
-                      <div className={`hidden md:block absolute top-1/2 ${index % 2 !== 0 ? '-right-[54px]' : '-left-[54px]'} w-5 h-5 rounded-full border-4 border-white shadow-sm bg-gradient-to-br ${step.gradient} -translate-y-1/2 z-0`}></div>
                    </div>
                 </div>
 
-                {/* Content */}
-                <div className={`flex-1 md:w-1/2 ${index % 2 !== 0 ? 'md:text-right' : 'md:text-left'} pl-16 md:pl-0`}>
+                {/* Content Side */}
+                <div className={`w-full md:w-1/2 ${index % 2 !== 0 ? 'md:text-right md:pr-24' : 'md:text-left md:pl-24'} pl-16 md:pl-0`}>
                    <span className={`inline-block text-xs font-bold uppercase tracking-wider mb-2 bg-gradient-to-r ${step.gradient} bg-clip-text text-transparent`}>
                      {step.subtitle}
                    </span>
