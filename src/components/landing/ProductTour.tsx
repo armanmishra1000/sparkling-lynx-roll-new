@@ -2,142 +2,121 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mic, CheckCircle2, BarChart3, Sparkles } from "lucide-react";
+import { Mic, CheckCircle2, BarChart3, Sparkles, PlayCircle, Waveform } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const tabs = [
-  { id: "speak", label: "Speak", icon: Mic },
-  { id: "correct", label: "Get Corrected", icon: CheckCircle2 },
-  { id: "track", label: "Track", icon: BarChart3 },
+  { 
+    id: "speak", 
+    label: "Natural Speaking", 
+    desc: "Just talk. No tapping words.",
+    icon: Mic 
+  },
+  { 
+    id: "correct", 
+    label: "Instant Feedback", 
+    desc: "Corrections that stick.",
+    icon: CheckCircle2 
+  },
+  { 
+    id: "track", 
+    label: "Neural Progress", 
+    desc: "See your brain adapt.",
+    icon: BarChart3 
+  },
 ];
 
 const content = {
   speak: (
-    <div className="bg-white rounded-[2rem] shadow-xl border-2 border-black p-8 h-full flex flex-col justify-center items-center text-center space-y-6 relative overflow-hidden">
-      {/* Abstract bg shape */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-300 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50 blur-xl"></div>
-
-      <div className="relative z-10">
-         <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center animate-pulse shadow-[4px_4px_0px_#FF0080]">
+    <div className="bg-white rounded-3xl shadow-2xl p-8 h-full flex flex-col justify-center items-center text-center space-y-8 relative overflow-hidden border border-gray-100">
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent pointer-events-none"></div>
+      
+      <div className="relative z-10 w-full max-w-sm">
+         <div className="mx-auto w-24 h-24 bg-gradient-to-tr from-blue-500 to-cyan-400 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20 mb-8 relative">
+            <div className="absolute inset-0 bg-white opacity-20 rounded-full animate-ping"></div>
             <Mic className="w-10 h-10 text-white" />
          </div>
-      </div>
-      <p className="text-2xl font-bold text-black italic">"I would like to order a coffee."</p>
-      
-      {/* Rainbow Wave Line Animation */}
-      <div className="w-full h-16 flex items-center justify-center">
-        <svg width="100%" height="100%" viewBox="0 0 300 60" preserveAspectRatio="none" className="overflow-visible">
-            <defs>
-                <linearGradient id="rainbowLine" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#FF0080" />
-                    <stop offset="25%" stopColor="#FF8C00" />
-                    <stop offset="50%" stopColor="#FFD700" />
-                    <stop offset="75%" stopColor="#40E0D0" />
-                    <stop offset="100%" stopColor="#7B61FF" />
-                </linearGradient>
-            </defs>
-            {/* Core Wave */}
-            <motion.path
-                d="M0,30 Q75,30 150,30 T300,30"
-                animate={{
-                    d: [
-                        "M0,30 Q37.5,10 75,30 T150,30 T225,50 T300,30",
-                        "M0,30 Q37.5,50 75,30 T150,30 T225,10 T300,30",
-                        "M0,30 Q37.5,20 75,30 T150,30 T225,40 T300,30",
-                        "M0,30 Q37.5,10 75,30 T150,30 T225,50 T300,30"
-                    ]
-                }}
-                transition={{
-                    repeat: Infinity,
-                    duration: 2,
-                    ease: "linear"
-                }}
-                fill="none"
-                stroke="url(#rainbowLine)"
-                strokeWidth="6"
-                strokeLinecap="round"
-            />
-            {/* Secondary Echo Wave (Opacity) */}
-            <motion.path
-                d="M0,30 Q75,30 150,30 T300,30"
-                animate={{
-                    d: [
-                        "M0,30 Q37.5,50 75,30 T150,30 T225,10 T300,30",
-                        "M0,30 Q37.5,10 75,30 T150,30 T225,50 T300,30",
-                        "M0,30 Q37.5,40 75,30 T150,30 T225,20 T300,30",
-                        "M0,30 Q37.5,50 75,30 T150,30 T225,10 T300,30"
-                    ]
-                }}
-                transition={{
-                    repeat: Infinity,
-                    duration: 3,
-                    ease: "linear"
-                }}
-                fill="none"
-                stroke="url(#rainbowLine)"
-                strokeWidth="3"
-                strokeOpacity="0.4"
-                strokeLinecap="round"
-            />
-        </svg>
+         
+         <p className="text-2xl font-medium text-gray-900 leading-snug">"I would like to order a coffee, please."</p>
+         
+         {/* Audio Waveform Visualization */}
+         <div className="mt-8 flex items-center justify-center gap-1 h-12">
+            {[...Array(20)].map((_, i) => (
+                <motion.div
+                    key={i}
+                    className="w-1.5 rounded-full bg-gray-900"
+                    animate={{ height: [12, Math.random() * 48 + 12, 12] }}
+                    transition={{ 
+                        repeat: Infinity, 
+                        duration: 1.5, 
+                        delay: i * 0.05,
+                        ease: "easeInOut" 
+                    }}
+                />
+            ))}
+         </div>
       </div>
     </div>
   ),
   correct: (
-    <div className="bg-white rounded-[2rem] shadow-xl border-2 border-black p-8 h-full flex flex-col space-y-6">
-      <div className="flex items-start space-x-4">
-        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shrink-0 border-2 border-black">
-            <span className="text-black font-black text-xs">YOU</span>
-        </div>
-        <div className="text-lg text-gray-400 line-through decoration-red-500 decoration-2">I want order coffee.</div>
-      </div>
-      
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="flex items-start space-x-4 relative"
-      >
-        <div className="absolute -left-2 -top-2">
-            <Sparkles className="w-6 h-6 text-yellow-400 fill-current animate-spin-slow" />
-        </div>
-        <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center shrink-0 shadow-[2px_2px_0px_#40E0D0]">
-            <span className="text-white font-black text-xs">AI</span>
-        </div>
-        <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 w-full">
-            <div className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                I'd like to order a coffee.
+    <div className="bg-white rounded-3xl shadow-2xl p-8 h-full flex flex-col justify-center relative overflow-hidden border border-gray-100">
+        <div className="space-y-6 max-w-md mx-auto w-full relative z-10">
+            {/* User Bubble */}
+            <div className="flex justify-end">
+                <div className="bg-gray-100 text-gray-500 px-6 py-4 rounded-2xl rounded-tr-sm">
+                    <span className="line-through decoration-red-400/50 decoration-2">I want order coffee.</span>
+                </div>
             </div>
-            <div className="text-sm font-bold text-gray-400 mt-2 uppercase tracking-wider">
-                ↑ More natural
-            </div>
+            
+            {/* AI Bubble */}
+            <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex justify-start"
+            >
+                <div className="bg-gradient-to-br from-gray-900 to-black text-white p-6 rounded-2xl rounded-tl-sm shadow-xl w-full">
+                    <div className="flex items-center gap-2 mb-3 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                        <Sparkles className="w-3 h-3 text-yellow-400" /> Suggestion
+                    </div>
+                    <div className="text-xl font-medium mb-2">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">I'd like to order</span> a coffee.
+                    </div>
+                    <div className="h-px bg-white/10 my-3"></div>
+                    <p className="text-sm text-gray-400">"I'd like" is softer and more polite than "I want".</p>
+                </div>
+            </motion.div>
         </div>
-      </motion.div>
     </div>
   ),
   track: (
-    <div className="bg-white rounded-[2rem] shadow-xl border-2 border-black p-8 h-full">
-      <h4 className="text-2xl font-black text-black mb-6 uppercase tracking-tight">Your Stats</h4>
-      <div className="space-y-6">
-        {[
-            { label: "Vocabulary", val: 85, color: "bg-[#FF0080]" },
-            { label: "Pronunciation", val: 62, color: "bg-[#FF8C00]" },
-            { label: "Confidence", val: 94, color: "bg-[#40E0D0]" }
-        ].map((item, i) => (
-             <div key={i}>
-                <div className="flex justify-between text-sm font-bold mb-2 uppercase">
-                    <span>{item.label}</span>
-                    <span>{item.val}%</span>
-                </div>
-                <div className="h-4 bg-gray-100 rounded-full overflow-hidden border border-black/5">
-                    <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: `${item.val}%` }}
-                        transition={{ duration: 1, delay: 0.2 + (i * 0.1) }}
-                        className={`h-full ${item.color}`} 
-                    />
-                </div>
+    <div className="bg-white rounded-3xl shadow-2xl p-8 h-full flex flex-col justify-center relative overflow-hidden border border-gray-100">
+      <div className="w-full max-w-sm mx-auto space-y-8 relative z-10">
+        <div>
+            <h4 className="text-lg font-bold text-gray-900 mb-6">Fluency Metrics</h4>
+            <div className="space-y-6">
+                {[
+                    { label: "Vocabulary", val: 85, color: "bg-pink-500" },
+                    { label: "Pronunciation", val: 62, color: "bg-orange-500" },
+                    { label: "Confidence", val: 94, color: "bg-cyan-500" }
+                ].map((item, i) => (
+                    <div key={i}>
+                        <div className="flex justify-between text-sm font-medium text-gray-600 mb-2">
+                            <span>{item.label}</span>
+                            <span>{item.val}%</span>
+                        </div>
+                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: `${item.val}%` }}
+                                transition={{ duration: 1, delay: 0.2 + (i * 0.1) }}
+                                className={`h-full rounded-full ${item.color}`} 
+                            />
+                        </div>
+                    </div>
+                ))}
             </div>
-        ))}
+        </div>
       </div>
     </div>
   )
@@ -147,44 +126,65 @@ const ProductTour = () => {
   const [activeTab, setActiveTab] = useState<"speak" | "correct" | "track">("speak");
 
   return (
-    <section className="py-32 overflow-hidden bg-gray-50/50">
-      <div className="container mx-auto px-6 max-w-5xl">
-        <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">
-                EXPERIENCE THE <span className="rainbow-text">FLOW</span>
+    <section className="py-32 overflow-hidden bg-white">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-gray-900">
+                Experience the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Flow</span>
             </h2>
+            <p className="text-xl text-gray-500">See how Sophie adapts to you in real-time.</p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-            {/* Tabs - Chunky Buttons */}
-            <div className="flex md:flex-col gap-4 w-full md:w-1/3">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+            {/* Navigation (Left) */}
+            <div className="lg:col-span-4 flex flex-col gap-4">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id as any)}
                         className={cn(
-                            "group flex items-center space-x-4 px-6 py-5 rounded-2xl transition-all duration-300 text-left w-full border-2",
+                            "group text-left p-6 rounded-2xl transition-all duration-300 relative overflow-hidden",
                             activeTab === tab.id 
-                                ? "bg-black border-black text-white shadow-[8px_8px_0px_#40E0D0] translate-x-[-2px] translate-y-[-2px]" 
-                                : "bg-white border-transparent hover:border-black/10 text-gray-500 hover:bg-white"
+                                ? "bg-gray-50 ring-1 ring-gray-200 shadow-sm" 
+                                : "hover:bg-gray-50/50"
                         )}
                     >
-                        <tab.icon className={cn("w-6 h-6", activeTab === tab.id ? "text-yellow-400" : "text-gray-400 group-hover:text-black")} />
-                        <span className="font-bold text-lg">{tab.label}</span>
+                        {activeTab === tab.id && (
+                            <motion.div 
+                                layoutId="activeTabIndicator"
+                                className="absolute left-0 top-0 bottom-0 w-1 bg-black" 
+                            />
+                        )}
+                        <div className="flex items-start gap-4">
+                            <div className={cn(
+                                "p-3 rounded-xl transition-colors",
+                                activeTab === tab.id ? "bg-black text-white" : "bg-gray-100 text-gray-500 group-hover:text-black"
+                            )}>
+                                <tab.icon className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <h3 className={cn("font-bold text-lg mb-1", activeTab === tab.id ? "text-gray-900" : "text-gray-500 group-hover:text-gray-900")}>
+                                    {tab.label}
+                                </h3>
+                                <p className="text-sm text-gray-400 font-medium">
+                                    {tab.desc}
+                                </p>
+                            </div>
+                        </div>
                     </button>
                 ))}
             </div>
 
-            {/* Display */}
-            <div className="w-full md:w-2/3 h-[400px] relative">
+            {/* Display Area (Right) */}
+            <div className="lg:col-span-8 h-[500px] relative perspective-1000">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}
-                        initial={{ opacity: 0, rotateX: -10, y: 50 }}
-                        animate={{ opacity: 1, rotateX: 0, y: 0 }}
-                        exit={{ opacity: 0, rotateX: 10, y: -50 }}
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                        className="h-full perspective-1000"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="h-full w-full"
                     >
                         {content[activeTab]}
                     </motion.div>
