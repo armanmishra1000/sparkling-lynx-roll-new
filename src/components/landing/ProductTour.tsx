@@ -11,6 +11,8 @@ const tabs = [
   { id: "track", label: "Track", icon: BarChart3 },
 ];
 
+const waveformHeights = [12, 24, 16, 28, 14, 20, 10, 22, 18, 26, 12, 15];
+
 const content = {
   speak: (
     <div className="bg-white rounded-2xl shadow-lg border border-border p-6 h-full flex flex-col justify-center items-center text-center space-y-4">
@@ -19,8 +21,8 @@ const content = {
       </div>
       <p className="text-lg font-medium text-gray-800">"I would like to order a coffee, please."</p>
       <div className="w-full max-w-xs h-8 bg-gray-100 rounded-full overflow-hidden flex items-center px-2 space-x-1">
-        {[...Array(12)].map((_, i) => (
-          <div key={i} className="w-2 bg-blue-400 rounded-full" style={{ height: Math.random() * 20 + 8 + 'px' }} />
+        {waveformHeights.map((h, i) => (
+          <div key={i} className="w-2 bg-blue-400 rounded-full" style={{ height: h + 'px' }} />
         ))}
       </div>
     </div>
