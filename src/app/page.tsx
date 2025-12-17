@@ -1,12 +1,29 @@
-import { MadeWithDyad } from "@/components/made-with-dyad";
+import Navbar from "@/components/landing/Navbar";
+import Hero from "@/components/landing/Hero";
+import SocialProof from "@/components/landing/SocialProof";
+import ProblemSolution from "@/components/landing/ProblemSolution";
+import HowItWorks from "@/components/landing/HowItWorks";
+import Features from "@/components/landing/Features";
+import ProductTour from "@/components/landing/ProductTour";
+import Testimonials from "@/components/landing/Testimonials";
+import Pricing from "@/components/landing/Pricing";
+import FAQ from "@/components/landing/FAQ";
+import Footer from "@/components/landing/Footer";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-1 items-center sm:items-start">
-        <h1>Blank page</h1>
-      </main>
-      <MadeWithDyad />
-    </div>
+    <main className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/20 selection:text-primary">
+      <Navbar />
+      <Hero />
+      <SocialProof />
+      <ProblemSolution />
+      <HowItWorks />
+      <Features />
+      <ProductTour />
+      <Testimonials />
+      <Pricing />
+      <FAQ />
+      <Footer />
+    </main>
   );
 }
