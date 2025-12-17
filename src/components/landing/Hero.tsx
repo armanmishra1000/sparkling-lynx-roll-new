@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles } from "lucide-react";
+import { ArrowRight, Play, Sparkles, Wand2 } from "lucide-react";
 import { motion } from "framer-motion";
 import SignupModal from "./SignupModal";
 import DemoModal from "./DemoModal";
@@ -11,70 +11,68 @@ import RainbowWaveBackground from "./RainbowWaveBackground";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-white pt-20">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20">
       
-      {/* The Brand Identity: Rainbow Wave */}
       <RainbowWaveBackground />
       
-      {/* Floating Particles/Grains for Texture */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>
-
-      <div className="container mx-auto max-w-7xl px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+      <div className="container mx-auto max-w-7xl px-6 relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
         
-        {/* Typographic "Monolith" - Absurdly Big & Bold */}
-        <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+        {/* Left Content */}
+        <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", bounce: 0.5 }}
-            className="inline-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/50 backdrop-blur-md border border-white/60 shadow-sm text-sm font-medium text-gray-600"
           >
-             <span className="bg-black text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider shadow-[4px_4px_0px_rgba(0,0,0,0.2)] transform rotate-2">
-               Beta Access Live
+             <span className="relative flex h-2 w-2">
+               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF0080] opacity-75"></span>
+               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF0080]"></span>
              </span>
+             <span>Beta Access Now Live</span>
           </motion.div>
 
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-black drop-shadow-sm">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] text-gray-900">
             <motion.span 
               className="block"
-              initial={{ x: -50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              Don't just
+            </motion.span>
+            <motion.span 
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FF0080] via-[#FF8C00] to-[#7B61FF] pb-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              DON'T JUST
-            </motion.span>
-            <motion.span 
-              className="block rainbow-text"
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              LEARN IT.
+              learn it.
             </motion.span>
             <motion.span 
               className="block"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
             >
-              SPEAK IT.
+              Speak it.
             </motion.span>
           </h1>
 
-          <p className="text-xl md:text-2xl font-medium text-gray-800 max-w-xl leading-relaxed">
-            The AI language coach that rides your brainwaves. <br/>
-            <span className="bg-yellow-300 px-2 italic">Forget boring drills.</span> Start surfing conversations.
+          <p className="text-xl text-gray-500 max-w-xl leading-relaxed">
+            The AI language coach that builds a map of your brain. <br className="hidden md:block" />
+            Adaptive scenarios. Instant corrections. <span className="text-gray-900 font-semibold">Zero judgement.</span>
           </p>
 
           <motion.div 
-            className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4"
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
+            transition={{ delay: 0.4 }}
           >
             <SignupModal triggerLocation="hero_primary">
-              <Button size="lg" className="h-16 px-8 rounded-full text-xl font-bold bg-black text-white hover:bg-gray-900 shadow-[8px_8px_0px_#FF0080] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#FF0080] transition-all border-2 border-black">
-                Start The Wave
+              <Button size="lg" className="h-14 px-8 rounded-full text-lg font-medium bg-gray-900 text-white hover:bg-black shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                Start your journey <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </SignupModal>
             
@@ -82,104 +80,112 @@ const Hero = () => {
                  <Button 
                     variant="outline" 
                     size="lg" 
-                    className="h-16 px-8 rounded-full text-lg font-bold border-2 border-black bg-white hover:bg-gray-50 shadow-[8px_8px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#000000] transition-all"
+                    className="h-14 px-8 rounded-full text-lg font-medium border border-gray-200 bg-white/50 backdrop-blur-sm hover:bg-white text-gray-900 hover:scale-105 transition-all duration-300"
                     onClick={() => trackEvent("cta_click_secondary", { location: "hero_demo_button" })}
                 >
-                  <Play className="mr-2 w-5 h-5 fill-current" /> See It Flow
+                  <Play className="mr-2 w-4 h-4 fill-current" /> Live Demo
                 </Button>
             </DemoModal>
           </motion.div>
+          
+          <div className="pt-4 flex items-center gap-4 text-sm text-gray-500">
+            <div className="flex -space-x-2">
+                {[1,2,3,4].map((i) => (
+                    <div key={i} className={`w-8 h-8 rounded-full border-2 border-white bg-gray-200 flex items-center justify-center overflow-hidden`}>
+                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i+10}`} alt="User" />
+                    </div>
+                ))}
+            </div>
+            <p>Joined by 10,000+ early adopters</p>
+          </div>
         </div>
 
-        {/* The "Floater" - Demo UI surfing the wave */}
+        {/* Right Visual - Premium Glass Card */}
         <div className="lg:col-span-5 relative mt-12 lg:mt-0">
           <motion.div
-            initial={{ y: 100, opacity: 0, rotate: 5 }}
-            animate={{ y: 0, opacity: 1, rotate: 0 }}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ type: "spring", duration: 1.5, delay: 0.5 }}
             className="relative z-20"
           >
-             {/* Glassmorphism Card */}
-            <div className="bg-white/80 backdrop-blur-xl border-2 border-white/50 p-6 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-               {/* Decorative Gradient Blob inside card */}
-               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full blur-[80px] opacity-40 -z-10"></div>
-               
-               <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-4">
-                    <div className="relative">
-                        <motion.div 
-                            animate={{ scale: [1, 1.1, 1] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute inset-0 bg-primary/30 rounded-full"
-                        />
-                        <div className="relative w-14 h-14 bg-black rounded-full flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg z-10">S</div>
+             <div className="relative bg-white/60 backdrop-blur-2xl border border-white/40 p-6 rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] overflow-hidden">
+               {/* Reflection Glint */}
+               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/40 to-transparent pointer-events-none"></div>
+
+               <div className="relative z-10 space-y-6">
+                 
+                 {/* Header of Card */}
+                 <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-gray-900 to-gray-700 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                            S
+                        </div>
+                        <div>
+                            <div className="text-sm font-bold text-gray-900">Sophie</div>
+                            <div className="text-xs text-green-600 font-medium flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Online
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                      <h3 className="font-bold text-lg leading-none">Sophie</h3>
-                      <span className="text-xs font-bold text-pink-600 uppercase tracking-widest">Live Coaching</span>
-                    </div>
-                  </div>
-                  {/* Mini Wave Line */}
-                  <div className="w-16 h-8">
-                     <svg width="100%" height="100%" viewBox="0 0 60 20" preserveAspectRatio="none">
-                         <defs>
-                            <linearGradient id="miniRainbow" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#FF0080" />
-                                <stop offset="100%" stopColor="#7B61FF" />
-                            </linearGradient>
-                         </defs>
-                         <motion.path 
-                            d="M0,10 Q15,10 30,10 T60,10"
-                            animate={{
-                                d: [
-                                    "M0,10 Q15,0 30,10 T60,10",
-                                    "M0,10 Q15,20 30,10 T60,10",
-                                    "M0,10 Q15,0 30,10 T60,10"
-                                ]
-                            }}
-                            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                            fill="none"
-                            stroke="url(#miniRainbow)"
-                            strokeWidth="3"
-                            strokeLinecap="round"
+                    <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">Real-time</div>
+                 </div>
+
+                 {/* Chat Area */}
+                 <div className="space-y-4">
+                     {/* User Message */}
+                     <div className="flex justify-end">
+                        <div className="bg-gray-100 text-gray-600 px-5 py-3 rounded-2xl rounded-tr-sm text-sm font-medium max-w-[85%]">
+                            "I... uh... want buy ticket?"
+                        </div>
+                     </div>
+
+                     {/* AI Correction */}
+                     <div className="flex justify-start">
+                        <div className="relative group">
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#FF0080] to-[#7B61FF] rounded-2xl rounded-tl-sm opacity-20 blur transition duration-200"></div>
+                            <div className="relative bg-white border border-gray-100 p-5 rounded-2xl rounded-tl-sm shadow-sm">
+                                <div className="flex items-center gap-2 mb-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                    <Wand2 className="w-3 h-3 text-[#FF0080]" /> Suggestion
+                                </div>
+                                <p className="text-base text-gray-900 leading-relaxed">
+                                    <span className="text-gray-400 line-through decoration-red-300 mr-2">want buy</span>
+                                    <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF0080] to-[#7B61FF]">I'd like to purchase</span>
+                                    {" "}a ticket, please.
+                                </p>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+
+                 {/* Visualizer Footer */}
+                 <div className="pt-2 flex items-center justify-center gap-1 h-8">
+                     {[...Array(12)].map((_, i) => (
+                         <motion.div 
+                            key={i}
+                            animate={{ height: [8, 16 + Math.random() * 16, 8] }}
+                            transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.05 }}
+                            className="w-1 rounded-full bg-gradient-to-t from-gray-900 to-gray-600 opacity-20"
                          />
-                     </svg>
-                  </div>
-               </div>
-
-               <div className="space-y-6">
-                 {/* User Bubble */}
-                 <div className="bg-gray-100 p-4 rounded-2xl rounded-tr-none text-right border border-gray-200">
-                    <p className="text-gray-600 text-lg">"I... uh... want buy ticket?"</p>
+                     ))}
                  </div>
 
-                 {/* Sophie Response - The Rainbow Correction */}
-                 <div className="relative">
-                    <div className="absolute -left-4 -top-4 bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full border border-black transform -rotate-12 z-10 shadow-sm">
-                      BETTER FLOW
-                    </div>
-                    <div className="bg-black p-5 rounded-3xl rounded-tl-none text-white shadow-xl">
-                      <p className="text-lg font-medium leading-relaxed">
-                        <span className="text-gray-500 line-through mr-2">want buy</span>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-500 font-bold">I'd like to buy</span>
-                        {" "}a ticket, please.
-                      </p>
-                      <div className="mt-4 flex items-center gap-3 text-sm text-gray-400 border-t border-gray-800 pt-3">
-                         <Sparkles className="w-4 h-4 text-yellow-300" />
-                         <span>Polite & natural phrasing</span>
-                      </div>
-                    </div>
-                 </div>
                </div>
+             </div>
 
-               {/* Interaction Pill */}
-               <div className="mt-8 flex justify-center">
-                  <div className="bg-white border-2 border-gray-100 rounded-full px-6 py-3 flex items-center gap-4 shadow-lg">
-                     <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                     <span className="text-sm font-bold text-gray-800">Listening...</span>
-                  </div>
-               </div>
-            </div>
+             {/* Floating Badge */}
+             <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -right-6 -bottom-6 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 flex items-center gap-3 max-w-[160px]"
+             >
+                 <div className="w-10 h-10 rounded-full bg-[#E0F2FE] flex items-center justify-center text-[#0EA5E9]">
+                    <Sparkles className="w-5 h-5 fill-current" />
+                 </div>
+                 <div className="text-xs font-medium text-gray-600 leading-tight">
+                    <strong>+15% Fluency</strong> detected this week
+                 </div>
+             </motion.div>
+
           </motion.div>
         </div>
       </div>
