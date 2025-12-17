@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
+  DialogTitle, // Added import
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -44,6 +45,9 @@ const DemoModal = ({ children }: DemoModalProps) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden bg-white border-none rounded-[2rem]">
+        {/* Screen Reader Title */}
+        <DialogTitle className="sr-only">Sophie AI Live Simulation Demo</DialogTitle>
+        
         <div className="relative h-[600px] flex flex-col bg-gray-50">
             
             {/* Header */}
