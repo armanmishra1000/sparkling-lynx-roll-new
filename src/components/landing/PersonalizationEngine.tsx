@@ -2,33 +2,48 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Brain, TrendingUp, History, Map } from "lucide-react";
+import { Brain, TrendingUp, History, Map, Sparkles } from "lucide-react";
 
 const PersonalizationEngine = () => {
   return (
-    <section className="py-24 bg-white overflow-hidden relative">
-      {/* Abstract Background Elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/3" />
+    <section className="py-32 bg-black text-white overflow-hidden relative">
+      {/* Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] opacity-50"></div>
       
-      <div className="container mx-auto px-6 max-w-6xl">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Glowing Orb Background */}
+      <div className="absolute top-1/2 right-0 w-[800px] h-[800px] bg-gradient-to-r from-purple-900/40 to-pink-900/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 -z-10" />
+
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
           
           {/* Content */}
           <div className="order-2 lg:order-1">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 mb-8 bg-white/5 backdrop-blur-sm"
+            >
+                <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-sm font-bold tracking-wider uppercase">Live Model</span>
+            </motion.div>
+
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold mb-6"
+              className="text-4xl md:text-6xl font-black mb-8 leading-[0.95]"
             >
-              This is why Sophie <br />
-              <span className="text-primary">feels unfair.</span>
+              WE BUILD A <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#40E0D0] to-[#7B61FF]">
+                MAP OF YOUR BRAIN.
+              </span>
             </motion.h2>
-            <p className="text-lg text-muted-foreground mb-12">
-              Most apps reset every session. Sophie builds a long-term model of your brain.
+            <p className="text-xl text-gray-400 mb-12 leading-relaxed">
+              Most apps reset every session. Sophie builds a persistent, evolving model of your language patterns. She knows what you know.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {[
                 {
                   icon: History,
@@ -42,8 +57,8 @@ const PersonalizationEngine = () => {
                 },
                 {
                   icon: Map,
-                  title: "Your Life as Curriculum",
-                  desc: "We prioritize vocab related to your job, hobbies, and goals."
+                  title: "Context Awareness",
+                  desc: "Sophie knows you're a 'Software Engineer' who likes 'Hiking', not a generic user."
                 }
               ].map((item, i) => (
                 <motion.div 
@@ -52,21 +67,21 @@ const PersonalizationEngine = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-start space-x-4 p-4 rounded-xl hover:bg-secondary/10 transition-colors border border-transparent hover:border-border/50"
+                  className="flex items-start space-x-6 p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group"
                 >
-                  <div className="bg-primary/10 p-3 rounded-lg text-primary shrink-0">
-                    <item.icon className="w-6 h-6" />
+                  <div className="bg-gradient-to-br from-gray-800 to-black p-4 rounded-2xl border border-white/10 group-hover:border-[#40E0D0]/50 transition-colors">
+                    <item.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-1">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="font-bold text-xl mb-2 text-white">{item.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Visual: Personalization Map */}
+          {/* Visual: The Synapse Map */}
           <div className="order-1 lg:order-2 flex justify-center">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
@@ -74,47 +89,55 @@ const PersonalizationEngine = () => {
               viewport={{ once: true }}
               className="relative w-full max-w-md aspect-square"
             >
-              {/* Central Node */}
+              {/* Central Node - The Brain */}
               <div className="absolute inset-0 flex items-center justify-center z-20">
-                <div className="w-24 h-24 bg-white rounded-full shadow-2xl border-4 border-primary/20 flex items-center justify-center relative">
-                   <div className="absolute inset-0 bg-primary/10 rounded-full animate-ping" />
-                   <Brain className="w-10 h-10 text-primary" />
+                <div className="w-32 h-32 bg-black rounded-full shadow-[0_0_50px_rgba(123,97,255,0.5)] border-2 border-[#7B61FF] flex items-center justify-center relative group">
+                   <div className="absolute inset-0 bg-[#7B61FF]/20 rounded-full animate-ping" />
+                   <Brain className="w-14 h-14 text-white" />
+                   
+                   {/* Orbiting particles */}
+                   <motion.div 
+                     className="absolute inset-[-20px] border border-dashed border-white/20 rounded-full"
+                     animate={{ rotate: 360 }}
+                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                   />
                 </div>
               </div>
 
-              {/* Orbiting Nodes */}
+              {/* Data Points */}
               {[
-                { label: "Grammar", val: "92%", color: "bg-blue-100 text-blue-700", angle: 0 },
-                { label: "Accent", val: "64%", color: "bg-orange-100 text-orange-700", angle: 72 },
-                { label: "Vocab", val: "88%", color: "bg-green-100 text-green-700", angle: 144 },
-                { label: "Fluency", val: "75%", color: "bg-purple-100 text-purple-700", angle: 216 },
-                { label: "Tone", val: "81%", color: "bg-pink-100 text-pink-700", angle: 288 },
+                { label: "Grammar", val: "92%", color: "#FF0080", x: "50%", y: "0%" },
+                { label: "Accent", val: "64%", color: "#FF8C00", x: "100%", y: "40%" },
+                { label: "Vocab", val: "88%", color: "#40E0D0", x: "80%", y: "90%" },
+                { label: "Fluency", val: "75%", color: "#7B61FF", x: "20%", y: "90%" },
+                { label: "Tone", val: "81%", color: "#FFD700", x: "0%", y: "40%" },
               ].map((node, i) => (
                 <motion.div
-                  key={i}
-                  className="absolute left-1/2 top-1/2"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 40, repeat: Infinity, ease: "linear", delay: i * -5 }}
-                  style={{ width: "100%", height: "100%", x: "-50%", y: "-50%" }}
+                    key={i}
+                    className="absolute"
+                    style={{ left: node.x, top: node.y }}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: 0.2 + (i * 0.1), type: "spring" }}
                 >
-                   <motion.div 
-                      className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 ${node.color} px-3 py-1.5 rounded-full text-xs font-bold shadow-sm border border-white/50 flex flex-col items-center gap-0.5`}
-                      style={{ transformOrigin: "50% 150px" }} // Keeps them upright? No, this rotates the container.
-                      // To keep text upright while orbiting, we counter-rotate the child
+                    {/* Connecting Line to Center (approximate visuals via absolute positioning) */}
+                    <div className="absolute top-1/2 left-1/2 w-40 h-[1px] bg-gradient-to-r from-transparent to-white/20 origin-left -z-10" 
+                         style={{ 
+                             width: '200px', 
+                             transform: `translate(-50%, -50%) rotate(${Math.atan2(250 - (parseInt(node.y)/100 * 500), 250 - (parseInt(node.x)/100 * 500)) * (180/Math.PI)}deg)` 
+                         }} 
+                    />
+
+                    <div 
+                        className="bg-black border border-white/20 px-4 py-3 rounded-2xl shadow-xl flex flex-col items-center gap-1 min-w-[100px] hover:scale-110 transition-transform cursor-default"
+                        style={{ boxShadow: `0 4px 0 ${node.color}` }}
                     >
-                      <span>{node.label}</span>
-                      <span className="text-[10px] opacity-80">{node.val}</span>
-                   </motion.div>
-                   {/* Connecting line */}
-                   <div className="absolute top-1/2 left-1/2 w-[1px] h-[140px] bg-gradient-to-t from-transparent via-primary/20 to-transparent -translate-x-1/2 origin-bottom -rotate-180" 
-                        style={{ transform: `translateX(-50%) rotate(${i * 72}deg) translateY(-50%)` }} // Static lines
-                   />
+                        <span className="text-gray-400 text-xs font-bold uppercase tracking-wider">{node.label}</span>
+                        <span className="text-xl font-black text-white">{node.val}</span>
+                    </div>
                 </motion.div>
               ))}
 
-              {/* Static ring visual */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-primary/20 scale-75" />
-              <div className="absolute inset-0 rounded-full border border-primary/10 scale-100" />
             </motion.div>
           </div>
         </div>
