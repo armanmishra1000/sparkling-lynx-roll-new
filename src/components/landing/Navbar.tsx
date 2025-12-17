@@ -19,10 +19,11 @@ const Navbar = () => {
   });
 
   const navLinks = [
-    { href: "#how-it-works", label: "How it works" },
-    { href: "#features", label: "Features" },
-    { href: "#pricing", label: "Pricing" },
-    { href: "#faq", label: "FAQ" },
+    { href: "/methodology", label: "Science" },
+    { href: "/#how-it-works", label: "How it works" },
+    { href: "/#features", label: "Features" },
+    { href: "/#pricing", label: "Pricing" },
+    { href: "/#faq", label: "FAQ" },
   ];
 
   return (
@@ -57,7 +58,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Link href="#" className="text-sm font-bold text-gray-600 hover:text-black">
+          <Link href="/login" className="text-sm font-bold text-gray-600 hover:text-black">
             Sign in
           </Link>
           <SignupModal triggerLocation="navbar_desktop">
@@ -92,7 +93,7 @@ const Navbar = () => {
                         </Link>
                     ))}
                     <div className="h-px bg-black/10 my-2" />
-                    <Link href="#" className="text-2xl font-bold text-gray-600 hover:text-black">
+                    <Link href="/login" className="text-2xl font-bold text-gray-600 hover:text-black">
                         Sign in
                     </Link>
                     <SignupModal triggerLocation="navbar_mobile">
