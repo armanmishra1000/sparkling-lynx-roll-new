@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 
 const posts = [
   {
+    slug: "why-you-are-still-translating",
     title: "Why You're Still Translating in Your Head",
     excerpt: "The cognitive bottleneck that prevents fluency, and how to break it using the Direct Method.",
     category: "Methodology",
@@ -16,6 +17,7 @@ const posts = [
     image: "bg-gradient-to-br from-pink-100 to-rose-100"
   },
   {
+    slug: "myth-of-language-gene",
     title: "The Myth of the 'Language Gene'",
     excerpt: "New research suggests adaptability is a skill, not a talent. Here's how to train your neuroplasticity.",
     category: "Science",
@@ -24,6 +26,7 @@ const posts = [
     image: "bg-gradient-to-br from-blue-100 to-cyan-100"
   },
   {
+    slug: "mexican-vs-spanish-slang",
     title: "Mexican vs. Spanish Slang: A Survival Guide",
     excerpt: "Don't say 'Coger' in Mexico. Seriously. A breakdown of regional variances.",
     category: "Culture",
@@ -32,6 +35,7 @@ const posts = [
     image: "bg-gradient-to-br from-purple-100 to-violet-100"
   },
   {
+    slug: "how-sophie-uses-llms",
     title: "How Sophie Uses LLMs Differently",
     excerpt: "We don't just use a wrapper. Inside our custom fine-tuning process for language acquisition.",
     category: "Engineering",
@@ -67,7 +71,7 @@ export default function BlogPage() {
         <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-10">
                 {posts.map((post, i) => (
-                    <Link href="#" key={i} className="group block">
+                    <Link href={`/blog/${post.slug}`} key={i} className="group block">
                         <article className="bg-white/60 backdrop-blur-xl border border-white/60 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 h-full flex flex-col">
                             <div className={`h-64 ${post.image} relative overflow-hidden`}>
                                 <div className="absolute inset-0 bg-white/20 group-hover:bg-transparent transition-colors"></div>
