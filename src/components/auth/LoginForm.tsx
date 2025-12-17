@@ -49,7 +49,7 @@ const LoginForm = () => {
         
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <Label htmlFor="password" classname="text-gray-700 font-medium">Password</Label>
+            <Label htmlFor="password" className="text-gray-700 font-medium">Password</Label>
             <Link href="#" className="text-xs font-bold text-[#7B61FF] hover:text-[#FF0080] transition-colors">
               Forgot password?
             </Link>
