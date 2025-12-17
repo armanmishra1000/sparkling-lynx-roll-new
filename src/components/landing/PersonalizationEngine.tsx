@@ -4,12 +4,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Brain, TrendingUp, History, Map } from "lucide-react";
 
+// Adjusted coordinates to keep nodes comfortably inside the container
 const nodes = [
-  { label: "Grammar", val: "92%", x: 50, y: 0 },   // Top Center
-  { label: "Accent", val: "64%", x: 90, y: 25 },   // Right Top
-  { label: "Vocab", val: "88%", x: 80, y: 80 },    // Right Bottom
-  { label: "Fluency", val: "75%", x: 20, y: 80 },  // Left Bottom
-  { label: "Tone", val: "81%", x: 10, y: 25 },     // Left Top
+  { label: "Grammar", val: "92%", x: 50, y: 12 },   // Top Center
+  { label: "Accent", val: "64%", x: 85, y: 35 },    // Right Top
+  { label: "Vocab", val: "88%", x: 75, y: 82 },     // Right Bottom
+  { label: "Fluency", val: "75%", x: 25, y: 82 },   // Left Bottom
+  { label: "Tone", val: "81%", x: 15, y: 35 },      // Left Top
 ];
 
 const PersonalizationEngine = () => {
@@ -100,7 +101,11 @@ const PersonalizationEngine = () => {
             >
               
               {/* Single SVG Layer for Connections - Uses 100x100 coordinate system matching percentages */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" viewBox="0 0 100 100">
+              <svg 
+                className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" 
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none" // Ensures SVG stretches exactly like CSS percentages
+              >
                 {nodes.map((node, i) => (
                     <g key={i}>
                         {/* Static Line */}
