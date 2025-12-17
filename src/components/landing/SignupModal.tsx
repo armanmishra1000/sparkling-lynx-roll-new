@@ -20,20 +20,45 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Loader2, CheckCircle2 } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface SignupModalProps {
   children: React.ReactNode;
-  variant?: "default" | "outline" | "ghost" | "link" | "secondary" | "destructive";
-  className?: string;
+  triggerLocation?: string; // To track where the user clicked "Join"
 }
 
-const SignupModal = ({ children }: SignupModalProps) => {
+const SignupModal = ({ children, triggerLocation = "unknown" }: SignupModalProps) => {
   const [step, setStep] = useState<"form" | "success">("form");
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  // Form state
+  const [formData, setFormData] = useState({
+    email: "",
+    language: "",
+    level: "",
+    goal: ""
+  });
+
+  const handleOpenChange = (newOpen: boolean) => {
+    setOpen(newOpen);
+    if (newOpen) {
+      trackEvent("cta_click_primary", { location: triggerLocation });
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    
+    // Track the signup attempt
+    trackEvent("signup_submit", { 
+      language: formData.language,
+      level: formData.level,
+      goal: formData.goal,
+      location: triggerLocation
+    });
+
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setLoading(false);
@@ -41,7 +66,7 @@ const SignupModal = ({ children }: SignupModalProps) => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
@@ -57,13 +82,19 @@ const SignupModal = ({ children }: SignupModalProps) => {
             <form onSubmit={handleSubmit} className="space-y-4 pt-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email address</Label>
-                <Input id="email" type="email" placeholder="hello@example.com" required />
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="hello@example.com" 
+                  required 
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                />
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>I want to learn</Label>
-                  <Select required>
+                  <Select required onValueChange={(val) => setFormData({...formData, language: val})}>
                     <SelectTrigger>
                       <SelectValue placeholder="Language" />
                     </SelectTrigger>
@@ -77,7 +108,7 @@ const SignupModal = ({ children }: SignupModalProps) => {
                 </div>
                 <div className="space-y-2">
                   <Label>My level is</Label>
-                  <Select required>
+                  <Select required onValueChange={(val) => setFormData({...formData, level: val})}>
                     <SelectTrigger>
                       <SelectValue placeholder="Level" />
                     </SelectTrigger>
@@ -92,7 +123,7 @@ const SignupModal = ({ children }: SignupModalProps) => {
 
               <div className="space-y-2">
                 <Label>Main goal</Label>
-                <Select>
+                <Select onValueChange={(val) => setFormData({...formData, goal: val})}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a goal" />
                   </SelectTrigger>
@@ -126,7 +157,7 @@ const SignupModal = ({ children }: SignupModalProps) => {
             <p className="text-muted-foreground">
               We've sent a confirmation email. Keep an eye on your inbox for your invite code.
             </p>
-            <Button variant="outline" onClick={() => setStep("form")} className="mt-4">
+            <Button variant="outline" onClick={() => setOpen(false)} className="mt-4">
               Close
             </Button>
           </div>

@@ -29,7 +29,7 @@ const Pricing = () => {
                         <span>Basic feedback</span>
                     </li>
                 </ul>
-                <SignupModal>
+                <SignupModal triggerLocation="pricing_free">
                     <Button variant="outline" className="w-full rounded-full">Join Waitlist</Button>
                 </SignupModal>
             </div>
@@ -53,7 +53,7 @@ const Pricing = () => {
                         <span>Tutor Mode</span>
                     </li>
                 </ul>
-                <SignupModal>
+                <SignupModal triggerLocation="pricing_plus">
                     <Button className="w-full rounded-full bg-primary hover:bg-primary/90">Join Waitlist</Button>
                 </SignupModal>
             </div>
@@ -76,7 +76,7 @@ const Pricing = () => {
                         <span>Accent packs</span>
                     </li>
                 </ul>
-                <SignupModal>
+                <SignupModal triggerLocation="pricing_pro">
                     <Button variant="outline" className="w-full rounded-full">Join Waitlist</Button>
                 </SignupModal>
             </div>

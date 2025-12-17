@@ -34,8 +34,8 @@ const Footer = () => {
              <div>
                 <h4 className="font-bold mb-4">Legal</h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li><Link href="#">Privacy</Link></li>
-                    <li><Link href="#">Terms</Link></li>
+                    <li><Link href="/privacy">Privacy</Link></li>
+                    <li><Link href="/terms">Terms</Link></li>
                 </ul>
             </div>
         </div>

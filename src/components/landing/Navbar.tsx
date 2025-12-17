@@ -51,7 +51,7 @@ const Navbar = () => {
           <Link href="#" className="hidden sm:block text-sm font-medium text-muted-foreground hover:text-foreground">
             Sign in
           </Link>
-          <SignupModal>
+          <SignupModal triggerLocation="navbar">
             <Button className="rounded-full px-6 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20">
               Get Early Access
             </Button>
