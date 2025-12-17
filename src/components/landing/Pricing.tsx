@@ -52,34 +52,43 @@ const Pricing = () => {
             className="grid md:grid-cols-3 gap-8 lg:gap-12 items-start"
         >
             {/* Free Tier */}
-            <motion.div variants={item} className="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Starter</h3>
-                <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-bold tracking-tight">$0</span>
-                    <span className="text-gray-400 font-medium">/ forever</span>
+            <motion.div 
+                variants={item} 
+                className="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
+                <div className="relative z-10">
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">Starter</h3>
+                    <div className="flex items-baseline gap-1 mb-6">
+                        <span className="text-4xl font-bold tracking-tight">$0</span>
+                        <span className="text-gray-400 font-medium">/ forever</span>
+                    </div>
+                    <p className="text-gray-500 text-sm mb-8">Perfect for casual practice.</p>
+                    <ul className="space-y-4 mb-8">
+                        {[
+                            "10 mins/day speaking",
+                            "Basic grammar corrections",
+                            "Travel scenarios only"
+                        ].map((feature, i) => (
+                            <li key={i} className="flex items-center space-x-3 text-sm font-medium text-gray-600">
+                                <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><Check className="w-3 h-3 text-gray-600" /></div>
+                                <span>{feature}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <SignupModal triggerLocation="pricing_free">
+                        <Button variant="outline" className="w-full rounded-xl h-12 border-gray-200 font-bold hover:bg-gray-50 hover:text-black hover:border-black transition-colors">Join Waitlist</Button>
+                    </SignupModal>
                 </div>
-                <p className="text-gray-500 text-sm mb-8">Perfect for casual practice.</p>
-                <ul className="space-y-4 mb-8">
-                    {[
-                        "10 mins/day speaking",
-                        "Basic grammar corrections",
-                        "Travel scenarios only"
-                    ].map((feature, i) => (
-                        <li key={i} className="flex items-center space-x-3 text-sm font-medium text-gray-600">
-                            <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><Check className="w-3 h-3 text-gray-600" /></div>
-                            <span>{feature}</span>
-                        </li>
-                    ))}
-                </ul>
-                <SignupModal triggerLocation="pricing_free">
-                    <Button variant="outline" className="w-full rounded-xl h-12 border-gray-200 font-bold hover:bg-gray-50 hover:text-black hover:border-black transition-colors">Join Waitlist</Button>
-                </SignupModal>
             </motion.div>
 
             {/* Plus Tier - Highlighted */}
-            <motion.div variants={item} className="relative bg-black text-white rounded-[2rem] p-1 shadow-2xl transform md:-translate-y-6">
+            <motion.div variants={item} className="relative bg-black text-white rounded-[2rem] p-1 shadow-2xl transform md:-translate-y-6 group">
                 {/* Gradient Border Effect */}
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-800 to-black rounded-[2rem]"></div>
+                
+                {/* Glow behind */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-purple-500/20 blur-3xl rounded-full opacity-50 group-hover:opacity-75 transition-opacity"></div>
                 
                 <div className="relative bg-[#0A0A0A] rounded-[1.8rem] p-8 h-full flex flex-col">
                     <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-[#FF0080] via-[#FFD700] to-[#7B61FF] rounded-t-[1.8rem] opacity-80"></div>
@@ -88,7 +97,7 @@ const Pricing = () => {
                         <h3 className="text-xl font-bold text-white flex items-center gap-2">
                             Plus <Sparkles className="w-4 h-4 text-[#FFD700] fill-current" />
                         </h3>
-                        <span className="bg-white/10 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
+                        <span className="bg-white/10 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-white/10">Most Popular</span>
                     </div>
                     
                     <div className="flex items-baseline gap-1 mb-6">
@@ -106,41 +115,47 @@ const Pricing = () => {
                             "Priority support"
                         ].map((feature, i) => (
                             <li key={i} className="flex items-center space-x-3 text-sm font-medium text-gray-200">
-                                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#FF0080] to-[#7B61FF] flex items-center justify-center shrink-0 text-white"><Check className="w-3 h-3" /></div>
+                                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#FF0080] to-[#7B61FF] flex items-center justify-center shrink-0 text-white shadow-lg shadow-purple-900/50"><Check className="w-3 h-3" /></div>
                                 <span>{feature}</span>
                             </li>
                         ))}
                     </ul>
                     <SignupModal triggerLocation="pricing_plus">
-                        <Button className="w-full rounded-xl h-14 bg-white text-black hover:bg-gray-200 font-bold text-lg shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-shadow">Start Free Trial</Button>
+                        <Button className="w-full rounded-xl h-14 bg-white text-black hover:bg-gray-200 font-bold text-lg shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-all">Start Free Trial</Button>
                     </SignupModal>
                 </div>
             </motion.div>
 
             {/* Pro Tier */}
-            <motion.div variants={item} className="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Pro</h3>
-                <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-bold tracking-tight">$29</span>
-                    <span className="text-gray-400 font-medium">/ month</span>
+            <motion.div 
+                variants={item} 
+                className="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
+                <div className="relative z-10">
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">Pro</h3>
+                    <div className="flex items-baseline gap-1 mb-6">
+                        <span className="text-4xl font-bold tracking-tight">$29</span>
+                        <span className="text-gray-400 font-medium">/ month</span>
+                    </div>
+                    <p className="text-gray-500 text-sm mb-8">Advanced coaching for business & exams.</p>
+                    <ul className="space-y-4 mb-8">
+                        {[
+                            "Everything in Plus",
+                            "Advanced Accent Reduction",
+                            "Business Spanish Module",
+                            "DELE Exam Prep"
+                        ].map((feature, i) => (
+                            <li key={i} className="flex items-center space-x-3 text-sm font-medium text-gray-600">
+                                <div className="w-5 h-5 rounded-full bg-black flex items-center justify-center shrink-0 text-white"><Check className="w-3 h-3" /></div>
+                                <span>{feature}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <SignupModal triggerLocation="pricing_pro">
+                        <Button variant="outline" className="w-full rounded-xl h-12 border-gray-200 font-bold hover:bg-gray-50 hover:text-black hover:border-black transition-colors">Join Waitlist</Button>
+                    </SignupModal>
                 </div>
-                <p className="text-gray-500 text-sm mb-8">Advanced coaching for business & exams.</p>
-                <ul className="space-y-4 mb-8">
-                    {[
-                        "Everything in Plus",
-                        "Advanced Accent Reduction",
-                        "Business Spanish Module",
-                        "DELE Exam Prep"
-                    ].map((feature, i) => (
-                        <li key={i} className="flex items-center space-x-3 text-sm font-medium text-gray-600">
-                            <div className="w-5 h-5 rounded-full bg-black flex items-center justify-center shrink-0 text-white"><Check className="w-3 h-3" /></div>
-                            <span>{feature}</span>
-                        </li>
-                    ))}
-                </ul>
-                <SignupModal triggerLocation="pricing_pro">
-                    <Button variant="outline" className="w-full rounded-xl h-12 border-gray-200 font-bold hover:bg-gray-50 hover:text-black hover:border-black transition-colors">Join Waitlist</Button>
-                </SignupModal>
             </motion.div>
         </motion.div>
       </div>

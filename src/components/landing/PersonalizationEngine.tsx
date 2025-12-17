@@ -93,7 +93,7 @@ const PersonalizationEngine = () => {
               {/* Central Brain Node */}
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <div className="relative">
-                    <div className="absolute inset-0 bg-indigo-500 blur-[60px] opacity-20"></div>
+                    <div className="absolute inset-0 bg-indigo-500 blur-[60px] opacity-20 animate-pulse"></div>
                     <div className="w-24 h-24 bg-black rounded-3xl border border-indigo-500/30 flex items-center justify-center relative shadow-2xl z-10 backdrop-blur-xl">
                         <Brain className="w-10 h-10 text-white" />
                     </div>
@@ -124,25 +124,37 @@ const PersonalizationEngine = () => {
                 >
                     {/* Connection Line to Center */}
                      <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible w-[500px] h-[500px] pointer-events-none -z-10" style={{ left: '50%', top: '50%' }}>
-                        <motion.line
+                        {/* Base Line */}
+                        <line
                             x1="0" y1="0"
                             x2={250 - (parseInt(node.x)/100 * 500)} // Inverse math because svg center is relative
                             y2={250 - (parseInt(node.y)/100 * 500)}
-                            stroke="url(#gradient-line)"
+                            stroke="#6366f1"
                             strokeWidth="1"
                             strokeOpacity="0.2"
                         />
-                        <defs>
-                            <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#6366f1" stopOpacity="0" />
-                                <stop offset="100%" stopColor="#6366f1" stopOpacity="0.5" />
-                            </linearGradient>
-                        </defs>
+                        {/* Animated Data Packet */}
+                        <motion.circle
+                            r="3"
+                            fill="#fff"
+                            initial={{ offsetDistance: "0%" }}
+                            animate={{ 
+                                cx: [0, 250 - (parseInt(node.x)/100 * 500)],
+                                cy: [0, 250 - (parseInt(node.y)/100 * 500)],
+                                opacity: [0, 1, 0]
+                            }}
+                            transition={{ 
+                                duration: 2 + Math.random(), 
+                                repeat: Infinity, 
+                                ease: "linear",
+                                delay: Math.random() * 2
+                            }}
+                        />
                     </svg>
 
-                    <div className="bg-zinc-900/90 border border-white/10 px-4 py-3 rounded-2xl backdrop-blur-md shadow-xl flex flex-col items-center min-w-[90px] hover:border-indigo-500/50 hover:scale-105 transition-all cursor-default">
+                    <div className="bg-zinc-900/90 border border-white/10 px-4 py-3 rounded-2xl backdrop-blur-md shadow-xl flex flex-col items-center min-w-[90px] hover:border-indigo-500/50 hover:scale-105 transition-all cursor-default group">
                         <span className="text-gray-500 text-[10px] font-bold uppercase tracking-wider mb-1">{node.label}</span>
-                        <span className="text-lg font-bold text-white font-mono">{node.val}</span>
+                        <span className="text-lg font-bold text-white font-mono group-hover:text-indigo-400 transition-colors">{node.val}</span>
                     </div>
                 </motion.div>
               ))}
