@@ -46,7 +46,19 @@ const HowItWorks = () => {
 
         <div className="relative">
           {/* Central Line - Precisely Centered */}
-          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-gray-200 to-transparent md:-translate-x-1/2"></div>
+          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-100 md:-translate-x-1/2 overflow-hidden rounded-full">
+            {/* The Neural Pulse Animation */}
+            <motion.div 
+                animate={{ top: ["-20%", "120%"] }}
+                transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    repeatDelay: 1
+                }}
+                className="absolute left-0 w-full h-[150px] bg-gradient-to-b from-transparent via-[#FF0080] to-transparent opacity-75 blur-sm"
+            />
+          </div>
           
           <div className="space-y-12 md:space-y-24">
             {steps.map((step, index) => (
@@ -60,12 +72,12 @@ const HowItWorks = () => {
               >
                 {/* Connector Dot - Absolutely Centered on the Timeline */}
                 <div className={`hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}>
-                   <div className={`w-4 h-4 rounded-full border-2 border-white shadow-sm bg-gradient-to-br ${step.gradient}`}></div>
+                   <div className={`w-4 h-4 rounded-full border-2 border-white shadow-sm bg-gradient-to-br ${step.gradient} ring-4 ring-white`}></div>
                 </div>
 
                 {/* Icon Side */}
                 <div className={`w-full md:w-1/2 flex ${index % 2 !== 0 ? 'md:justify-start md:pl-24' : 'md:justify-end md:pr-24'} justify-start pl-0 mb-4 md:mb-0`}>
-                   <div className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center shadow-lg border-4 border-white ring-1 ring-black/5 relative z-10`}>
+                   <div className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center shadow-lg border-4 border-white ring-1 ring-black/5 relative z-10 group hover:scale-110 transition-transform duration-300`}>
                       <step.icon className="w-6 h-6" />
                    </div>
                 </div>
