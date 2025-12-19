@@ -120,7 +120,7 @@ const PersonalizationEngine = () => {
                         <motion.circle
                             r="1.5"
                             fill="#fff"
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0, cx: node.x, cy: node.y }}
                             animate={{ 
                                 cx: [node.x, 50],
                                 cy: [node.y, 50],
