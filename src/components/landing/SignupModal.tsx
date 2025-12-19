@@ -65,6 +65,20 @@ const SignupModal = ({ children, triggerLocation = "unknown" }: SignupModalProps
       location: triggerLocation
     });
 
+    // Send notification to Telegram (fire and forget)
+    fetch("/api/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        form: "Early Access Signup",
+        email: formData.email,
+        language: formData.language,
+        level: formData.level,
+        goal: formData.goal,
+        location: triggerLocation,
+      }),
+    }).catch(console.error);
+
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setLoading(false);
     setStep("success");

