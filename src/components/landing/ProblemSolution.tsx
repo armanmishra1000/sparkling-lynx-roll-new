@@ -36,7 +36,7 @@ const ProblemSolution = () => {
           >
             Conjugation tables{" "}
             <span className="text-gray-600 line-through decoration-red-500/50 decoration-2">
-              memorizing words doesn't work.
+              memorizing words doesn&apos;t work.
             </span>
             . <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-white font-bold">
@@ -58,7 +58,7 @@ const ProblemSolution = () => {
                 The traditional method
               </h3>
               <p className="text-gray-500 text-sm">
-                Memorizing "La Gato" & Verb Drills
+                Memorizing &quot;La Gato&quot; & Verb Drills
               </p>
             </div>
 

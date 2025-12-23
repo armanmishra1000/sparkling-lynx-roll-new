@@ -34,7 +34,7 @@ const Testimonials = () => {
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-gray-900">
-            Don't take our <br />
+            Don&apos;t take our <br />
             <motion.span
               key={currentLanguage.id}
               initial={{ opacity: 0, y: 10 }}
@@ -72,7 +72,7 @@ const Testimonials = () => {
                   ))}
                 </div>
 
-                <p className="text-lg font-medium leading-relaxed mb-8 text-gray-800">"{t.quote}"</p>
+                <p className="text-lg font-medium leading-relaxed mb-8 text-gray-800">&quot;{t.quote}&quot;</p>
 
                 {/* user-profile */}
                 <div className="flex items-center gap-4 pt-6 border-t border-gray-100/50 mt-auto">
