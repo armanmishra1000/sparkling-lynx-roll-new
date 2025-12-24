@@ -16,7 +16,7 @@ const Hero = () => {
   const { currentLanguage } = useDemo();
 
   return (
-    <section className="relative min-h-[110vh] flex flex-col justify-center overflow-hidden pt-32 pb-20">
+    <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden pt-12 pb-20">
       <RainbowWaveBackground />
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -162,7 +162,7 @@ const Hero = () => {
               {currentLanguage.name}
             </p>
           </motion.div> */}
-          
+
         </div>
 
         {/* Right Visual - Premium Glass Card */}
