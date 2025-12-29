@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import InteractiveRainbowWave from "./InteractiveRainbowWave";
-import SignupModal from "./SignupModal";
 
 const EraSection = () => {
     return (
@@ -57,16 +56,19 @@ const EraSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                    <SignupModal triggerLocation="era_section">
-                        <button className="group relative p-[2px] rounded-full transition-transform hover:scale-105 active:scale-95">
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#FF0000] via-[#FF7F00] via-[#FFFF00] via-[#00FF00] via-[#0000FF] to-[#4B0082] rounded-full" />
-                            <div className="relative px-12 py-3 bg-white rounded-full transition-colors">
-                                <span className="text-lg font-bold text-gray-900 tracking-tight">
-                                    Meet Sophie
-                                </span>
-                            </div>
-                        </button>
-                    </SignupModal>
+                    <a
+                        href="https://sophie-rose.vercel.app/demo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative inline-block p-[2px] rounded-full transition-transform hover:scale-105 active:scale-95"
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#FF0000] via-[#FF7F00] via-[#FFFF00] via-[#00FF00] via-[#0000FF] to-[#4B0082] rounded-full" />
+                        <div className="relative px-12 py-3 bg-white rounded-full transition-colors">
+                            <span className="text-lg font-bold text-gray-900 tracking-tight">
+                                Meet Sophie
+                            </span>
+                        </div>
+                    </a>
                 </motion.div>
             </div>
         </section>
