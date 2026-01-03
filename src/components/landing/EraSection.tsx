@@ -7,6 +7,7 @@ import InteractiveRainbowWave from "./InteractiveRainbowWave";
 const EraSection = () => {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden bg-white min-h-[600px] flex flex-col items-center justify-center">
+      {/* Part 1: Title & Subtitle - Contained */}
       <div className="container mx-auto max-w-7xl px-4 relative z-10 flex flex-col items-center text-center">
         {/* Main Title: Sophie AI */}
         <motion.div
@@ -17,7 +18,7 @@ const EraSection = () => {
           className="flex items-center justify-center mb-4 mt-14"
         >
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 flex items-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#FF0000] via-[#FF7F00] via-[#FFFF00] via-[#00FF00] via-[#0000FF] via-[#4B0082] to-[#9400D3] mr-1">
+            <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF0000_0%,#FF7F00_17%,#FFFF00_33%,#00FF00_50%,#0000FF_67%,#4B0082_83%,#9400D3_100%)] mr-1">
               S
             </span>
             ophie AI
@@ -30,26 +31,29 @@ const EraSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-xl md:text-2xl font-black tracking-widest text-gray-900 mb-12 uppercase"
+          className="text-xl md:text-2xl font-black tracking-widest text-gray-900 mb-12"
         >
-          THE{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF0000] via-[#FF7F00] via-[#FFFF00] via-[#00FF00] via-[#0000FF] via-[#4B0082] to-[#9400D3]">
-            NEW ERA
+          The{" "}
+          <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF0000_0%,#FF7F00_17%,#FFFF00_33%,#00FF00_50%,#0000FF_67%,#4B0082_83%,#9400D3_100%)]">
+            New Era
           </span>{" "}
-          OF LANGUAGE ACQUISITION.
+          of Language Adquisition
         </motion.h2>
+      </div>
 
-        {/* Interactive Wave Container */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full max-w-4xl mb-12 h-64 flex items-center justify-center"
-        >
-          <InteractiveRainbowWave className="h-full" useRainbow={true} />
-        </motion.div>
+      {/* Part 2: Wave - Full Width (Outside Container) */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="w-full mb-12 h-64 flex items-center justify-center"
+      >
+        <InteractiveRainbowWave className="h-full" useRainbow={true} />
+      </motion.div>
 
+      {/* Part 3: Button - Contained */}
+      <div className="container mx-auto max-w-7xl px-4 relative z-10 flex flex-col items-center text-center">
         {/* Meet Sophie Button with Rainbow Border */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,7 +67,7 @@ const EraSection = () => {
             rel="noopener noreferrer"
             className="group relative inline-block p-[2px] rounded-full transition-transform hover:scale-105 active:scale-95"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#FF0000] via-[#FF7F00] via-[#FFFF00] via-[#00FF00] via-[#0000FF] via-[#4B0082] to-[#9400D3] rounded-full" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,#FF0000_0%,#FF7F00_17%,#FFFF00_33%,#00FF00_50%,#0000FF_67%,#4B0082_83%,#9400D3_100%)] rounded-full" />
             <div className="relative px-12 py-3 bg-white rounded-full transition-colors">
               <span className="text-lg font-bold text-gray-900 tracking-tight">
                 Meet Sophie
