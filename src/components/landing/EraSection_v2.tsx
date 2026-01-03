@@ -37,16 +37,16 @@ const EraSection = () => {
           of Language Adquisition
         </motion.h2>
 
-      {/* Part 2: Wave - Full Width (Outside Container) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="w-full max-w-4xl mb-12 h-64 flex items-center justify-center"
-      >
-        <InteractiveRainbowWave className="h-full" useRainbow={true} />
-      </motion.div>
+        {/* Interactive Wave Container - Full Width Using Positioning */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative left-0 w-screen max-w-none h-64 flex items-center justify-center"
+        >
+          <InteractiveRainbowWave className="h-full" useRainbow={true} />
+        </motion.div>
 
         {/* Additional Text Before Button */}
         <motion.div
