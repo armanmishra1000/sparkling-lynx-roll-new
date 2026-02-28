@@ -1,104 +1,134 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { TrendingUp, History, Map, Brain } from "lucide-react";
+import { TrendingUp, History, Map, type LucideIcon } from "lucide-react";
 import { Colors } from "@/lib/constants";
 import { RainbowIcon } from "@/components/ui/RainbowIcon";
+import { RainbowGradient } from "@/components/ui/RainbowGradient";
 
-// Restored nodes data for the Stat Grid
-const stats = [
-  { label: "Confidence", val: "100%", color: "bg-red-500" },
-  { label: "Vocab", val: "88%", color: "bg-orange-500" },
-  { label: "Tone", val: "81%", color: "bg-amber-500" },
-  { label: "Fluency", val: "75%", color: "bg-green-500" },
-  { label: "Accent", val: "64%", color: "bg-blue-500" },
+type PersonalizationStat = {
+  label: string;
+  val: string;
+  helper: string;
+  progress: number;
+  tone: string;
+};
+
+type PersonalizationStep = {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  tag: string;
+};
+
+const stats: PersonalizationStat[] = [
+  { label: "Confidence", val: "100%", helper: "Conversation-ready", progress: 100, tone: Colors.rainbow[0] },
+  { label: "Vocab", val: "88%", helper: "Industry terms tracked", progress: 88, tone: Colors.rainbow[1] },
+  { label: "Tone", val: "81%", helper: "Context adjusted", progress: 81, tone: Colors.rainbow[2] },
+  { label: "Fluency", val: "75%", helper: "Weekly improvement", progress: 75, tone: Colors.rainbow[3] },
+  { label: "Accent", val: "64%", helper: "Pronunciation map", progress: 64, tone: Colors.rainbow[4] },
+];
+
+const steps: PersonalizationStep[] = [
+  {
+    icon: History,
+    title: "Persistent Memory",
+    desc: "Mistakes from last week become drills for today. Nothing is lost.",
+    tag: "Memory",
+  },
+  {
+    icon: TrendingUp,
+    title: "Adaptive Difficulty",
+    desc: "Always challenging, never crushing. It scales with your confidence.",
+    tag: "Adaptation",
+  },
+  {
+    icon: Map,
+    title: "Context Awareness",
+    desc: "Sophie knows you're a 'Software Engineer' who likes 'Hiking', not a generic user.",
+    tag: "Context",
+  },
 ];
 
 const PersonalizationEngine = () => {
-  const steps = [
-    {
-      icon: History,
-      title: "Persistent Memory",
-      desc: "Mistakes from last week become drills for today. Nothing is lost.",
-      delay: 0.1
-    },
-    {
-      icon: TrendingUp,
-      title: "Adaptive Difficulty",
-      desc: "Always challenging, never crushing. It scales with your confidence.",
-      delay: 0.2
-    },
-    {
-      icon: Map,
-      title: "Context Awareness",
-      desc: "Sophie knows you're a 'Software Engineer' who likes 'Hiking', not a generic user.",
-      delay: 0.3
-    }
-  ];
+  const rainbowLine = `linear-gradient(90deg, ${Colors.rainbow.join(", ")})`;
 
   return (
-    <section className="py-24 bg-white overflow-hidden relative">
-      {/* Define Rainbow Gradient for Icons */}
-
-
+    <section className="py-24 overflow-hidden relative bg-white">
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="text-center lg:text-left mb-12 md:mb-16">
+          <h2 className="mt-5 text-4xl md:text-5xl font-bold tracking-tight text-black max-w-3xl">
+            A premium learning engine built around your behavior.
+          </h2>
+          <p className="mt-5 text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
+            Most apps reset every session. Sophie builds a persistent, evolving model of your language patterns. She knows what you know.
+          </p>
+        </div>
 
-          {/* LEFT COLUMN: Header + Stats Grid */}
-          <div>
-            <div className="lg:text-left text-center">
-              <h2
-                className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6"
-              >
-                We build a map of your unique brain.
-              </h2>
-              <p className="text-xl text-gray-500 mb-12 leading-relaxed">
-                Most apps reset every session. Sophie builds a persistent, evolving model of your language patterns. She knows what you know.
-              </p>
+        <div className="grid lg:grid-cols-[1.1fr,1fr] gap-8 lg:gap-10 items-start">
+          <div className="rounded-3xl border border-gray-200 bg-white/95 backdrop-blur-sm shadow-[0_18px_45px_rgba(15,23,42,0.08)] p-6 sm:p-8">
+            <div className="flex items-center justify-between gap-4 mb-6">
+              <div>
+                <p className="text-sm font-semibold text-gray-900">Live Learning Graph</p>
+                <p className="text-sm text-gray-500">Updated after every conversation</p>
+              </div>
+              <RainbowGradient className="rounded-full px-3 py-1 text-[11px] font-semibold tracking-[0.12em] uppercase text-white">
+                Realtime
+              </RainbowGradient>
             </div>
-            {/* The "Nodes" as a Clean Stat Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {stats.map((stat, i) => (
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {stats.map((stat) => (
                 <div
-                  key={i}
-                  className="bg-white border p-5 rounded-2xl shadow-sm flex flex-col justify-between gap-2"
+                  key={stat.label}
+                  className="rounded-2xl border border-gray-200 bg-white p-4"
                 >
-                  <div className={`w-2 h-2 rounded-full ${stat.color}`} />
-                  <div>
-                    <div className="text-gray-500 text-xs tracking-wider">{stat.label}</div>
-                    <div className="text-2xl text-black tracking-tight">{stat.val}</div>
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs tracking-[0.12em] uppercase text-gray-500">{stat.label}</p>
+                      <p className="text-2xl font-bold text-black tracking-tight mt-1">{stat.val}</p>
+                    </div>
+                    <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: stat.tone }} />
+                  </div>
+                  <p className="mt-2 text-sm text-gray-500">{stat.helper}</p>
+                  <div className="mt-3 h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: `${stat.progress}%`, backgroundColor: stat.tone }}
+                    />
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Feature Steps */}
-          <div className="space-y-6 lg:mt-24">
+          <div className="space-y-4">
             {steps.map((step, i) => (
               <div
-                key={i}
-                className="bg-white p-5 rounded-3xl border shadow-sm group"
+                key={step.title}
+                className="rounded-3xl border border-gray-200 bg-white/95 backdrop-blur-sm shadow-[0_8px_24px_rgba(15,23,42,0.06)] p-4 sm:p-6"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
+                <div className="flex items-start gap-4 sm:gap-5">
+                  <div className="relative w-12 h-12 shrink-0 rounded-xl border border-gray-200 bg-white flex items-center justify-center">
                     <RainbowIcon
                       icon={step.icon}
-                      className="w-6 h-6"
+                      className="w-5 h-5"
                     />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-lg text-black mb-2">{step.title}</h3>
-                    <p className="text-gray-500 leading-relaxed">
-                      {step.desc}
-                    </p>
+                  <div className="min-w-0">
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className="font-semibold text-lg text-black">{step.title}</h3>
+                    </div>
+                    <p className="mt-2 text-gray-600 leading-relaxed">{step.desc}</p>
+                    <div
+                      className="mt-4 h-px w-full"
+                      style={{ backgroundImage: rainbowLine }}
+                    />
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
         </div>
       </div>
     </section>

@@ -2,10 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { RainbowBorder } from "@/components/ui/RainbowBorder";
 import { RainbowText } from "@/components/ui/RainbowText";
 import { ArrowRight } from "lucide-react";
+import { RainbowGradient } from "../ui/RainbowGradient";
 
 const steps = [
   {
@@ -25,86 +26,124 @@ const steps = [
   }
 ];
 
+const listVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 18, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-24 bg-white relative overflow-hidden">
-      <div className="container mx-auto px-4 max-w-7xl relative z-10">
-
-        {/* Header */}
-        <div className="text-center mb-20">
-          <h2
-            className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6"
-          >
+    <section id="how-it-works" className="relative overflow-hidden py-16">
+      <div className="container relative z-10 mx-auto max-w-7xl px-4">
+        <motion.div
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.65 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="mb-6 text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
             The Fluency Loop
           </h2>
-          <p
-            className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed"
-          >
+          <p className="mx-auto max-w-2xl text-xl leading-relaxed text-slate-600">
             From frozen to fluent in three cognitive steps.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-
-          {/* Left Column: Sophie Image (Sticky on Desktop) */}
-          <div className="relative order-2 lg:order-1">
-            <div className="lg:sticky lg:top-32">
-              <div
-                className="relative z-10"
-              >
-                {/* Soft background glow/shape */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-blue-50/50 rounded-full blur-3xl -z-10" />
-
-                <Image
-                  src="/SOPHIE no background.png"
-                  alt="Sophie AI Mascot"
-                  width={600}
-                  height={800}
-                  className="w-auto h-[500px] lg:h-[550px] mx-auto object-contain"
-                  priority
-                />
+        <div className="relative overflow-hidden rounded-[2rem] border p-5 shadow-sm backdrop-blur-sm md:p-8">
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.1)_1px,transparent_1px)] bg-[size:28px_28px] opacity-40" />
+          <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-12">
+            <div className="order-2 lg:order-1 lg:col-span-5">
+              <div className="lg:sticky lg:top-28">
+                <motion.div
+                  className="relative isolate overflow-hidden rounded-[1.6rem] border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-slate-100 p-6"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image
+                    src="/SOPHIE no background.png"
+                    alt="Sophie AI Mascot"
+                    width={600}
+                    height={800}
+                    className="relative z-10 h-[470px] w-full object-contain lg:h-[520px]"
+                    priority
+                  />
+                </motion.div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Steps */}
-          <div className="flex flex-col gap-10 order-1 lg:order-2 lg:pt-10">
-            {steps.map((step, index) => (
-              <div
-                key={index}
-                className="group"
-              >
-                <div className="flex flex-col items-start text-left pl-6 border-l-2 border-gray-100 group-hover:border-gray-200 transition-colors duration-300">
-                  <span className="text-sm font-bold tracking-wider mb-2 uppercase">
-                    <RainbowText text={step.step} />
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-black mb-4 group-hover:text-gray-900 transition-colors">
-                    {step.title}
-                  </h3>
-                  <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-
-            {/* CTA */}
-            <div
-              className="pl-6"
+            <motion.div
+              className="relative order-1 lg:order-2 lg:col-span-7"
+              variants={listVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
-              <RainbowBorder
-                className="inline-block"
-                borderRadius={9999}
-                innerClassName="bg-transparent"
-              >
-                <button className="bg-black text-white py-4 px-8 rounded-full font-medium text-lg flex items-center gap-2 hover:bg-gray-900 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
-                  Start Talking
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </RainbowBorder>
-            </div>
-          </div>
 
+              <ol className="space-y-5">
+                {steps.map((step, index) => (
+                  <motion.li
+                    key={index}
+                    variants={itemVariants}
+                    className={`group relative pl-12 lg:w-[88%] lg:pl-0 ${index === 1 ? "lg:ml-auto" : "lg:mr-auto"}`}
+                  >
+                    <div className="rounded-2xl bg-gradient-to-br from-sky-200/60 via-slate-100 to-amber-100 p-[1px] lg:mx-8">
+                      <div className="relative overflow-hidden rounded-2xl bg-white px-6 py-6 shadow-[0_24px_65px_-45px_rgba(15,23,42,0.6)] transition-all duration-300 group-hover:shadow-[0_28px_72px_-45px_rgba(15,23,42,0.7)] md:px-7 md:py-7">
+                        <div className="pointer-events-none absolute right-4 top-4 text-6xl font-semibold text-slate-100">
+                          {step.step.replace("Step ", "")}
+                        </div>
+                        <span className="relative mb-3 inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm font-bold uppercase tracking-wider">
+                          <RainbowText text={step.step} />
+                        </span>
+                        <h3 className="relative mb-4 text-2xl font-bold text-slate-950 md:text-3xl">
+                          {step.title}
+                        </h3>
+                        <p className="relative max-w-lg text-lg leading-relaxed text-slate-600">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.li>
+                ))}
+              </ol>
+
+              <motion.div className="pl-14 pt-6" variants={itemVariants}>
+                <RainbowBorder
+                  borderRadius={9999}
+                  borderWidth={2}
+                  innerClassName="relative bg-white h-14 px-12 py-3 flex items-center justify-center transition-colors overflow-hidden rounded-full"
+                >
+                  <RainbowGradient className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
+                  <span className="relative z-10 flex items-center font-medium text-black">
+                    Start Talking
+                    <ArrowRight className="ml-2 w-5 h-5 mt-0.5" />
+                  </span>
+                </RainbowBorder>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

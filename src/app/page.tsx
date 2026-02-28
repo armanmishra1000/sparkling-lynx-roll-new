@@ -1,5 +1,6 @@
 import Navbar from "@/components/landing/Navbar";
 import EraSection from "@/components/landing/EraSection";
+import LanguagesMarqueeSection from "@/components/landing/LanguagesMarqueeSection";
 import Hero from "@/components/landing/Hero";
 import SocialProof from "@/components/landing/SocialProof";
 import ProblemSolution from "@/components/landing/ProblemSolution";
@@ -19,7 +20,8 @@ export default function Home() {
       <Navbar />
       <EraSection />
       <Hero />
-      <SocialProof />
+      <LanguagesMarqueeSection />
+      {/* <SocialProof /> */}
       <ProblemSolution />
       <HowItWorks />
       <Features />
