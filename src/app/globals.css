@@ -139,6 +139,32 @@
   animation: marquee2 30s linear infinite;
 }
 
+@keyframes languages-marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(var(--marquee-distance));
+  }
+}
+
+.animate-languages-marquee {
+  animation-name: languages-marquee;
+  animation-duration: var(--marquee-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-languages-marquee {
+    animation: none;
+    transform: translateX(0);
+  }
+}
+
 /* Gradient Masks */
 .mask-linear-fade {
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
