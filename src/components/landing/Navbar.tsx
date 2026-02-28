@@ -40,25 +40,26 @@ const Navbar = () => {
     >
       <div 
         className={cn(
-            "w-[95%] max-w-7xl flex items-center justify-between transition-all duration-300 rounded-full px-6 mx-auto",
+            "w-[95%] max-w-7xl flex items-center justify-between transition-all duration-300 rounded-full px-4 mx-auto",
             isScrolled 
-                ? "bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.04)] py-3 ring-1 ring-black/5" 
+                ? "bg-white/80 backdrop-blur-2xl border border-white/40 shadow-sm py-3 ring-1 ring-black/5" 
                 : "bg-transparent py-4 border border-transparent"
         )}
       >
         <Link href="/" className="flex items-center gap-2 group">
-           <div className="relative w-9 h-9 flex items-center justify-center">
-                {/* logo design */}
-                <motion.div 
-                  key={currentLanguage.id}
-                  style={{ 
-                    backgroundImage: `linear-gradient(to right, ${currentLanguage.from}, ${currentLanguage.via}, ${currentLanguage.to})`
-                  }}
-                  className={cn("absolute inset-0 rounded-full opacity-80 group-hover:opacity-100 blur-[6px] transition-all duration-500")}
-                ></motion.div>
-                <div className="relative w-full h-full bg-white rounded-full flex items-center justify-center text-sm font-black border border-white/50">S</div>
-           </div>
-           <span className="text-xl font-bold tracking-tight text-gray-900">Sophie.ai</span>
+           <div className="relative w-10 h-10 shrink-0">
+                  <div
+                    style={{
+                      background: `linear-gradient(to right, ${currentLanguage.from}, ${currentLanguage.via}, ${currentLanguage.to})`,
+                    }}
+                    className="w-full h-full rounded-full p-[2px]"
+                  >
+                    <div className="w-full h-full bg-white rounded-full flex items-center justify-center text-lg font-black text-black">
+                      S
+                    </div>
+                  </div>
+                </div>
+           <span className="text-xl font-bold tracking-tight text-black">Sophie.ai</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -67,7 +68,7 @@ const Navbar = () => {
             <Link 
               key={link.href}
               href={link.href} 
-              className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-black hover:bg-white/80 rounded-full transition-all duration-200"
+              className="px-5 py-2 font-medium text-gray-500 hover:text-black hover:bg-white/80 rounded-full transition-all duration-200"
             >
               {link.label}
             </Link>
@@ -75,11 +76,11 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <Link href="/login" className="text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors">
+          <Link href="/login" className="font-semibold text-black transition-colors">
             Log in
           </Link>
           <SignupModal triggerLocation="navbar_desktop">
-            <Button className="rounded-full px-6 h-10 bg-black hover:bg-gray-800 text-white font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-sm border border-transparent hover:border-white/20">
+            <Button className="rounded-full px-6 h-10 bg-black hover:bg-gray-900 text-white font-medium shadow-sm transition-all duration-300 text-sm border border-transparent">
               <Sparkles className="w-3 h-3 mr-2 text-[#FFD700]" /> Early Access
             </Button>
           </SignupModal>

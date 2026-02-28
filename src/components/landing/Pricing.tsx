@@ -3,13 +3,16 @@
 import React from "react";
 import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { RainbowBorder } from "@/components/ui/RainbowBorder";
 import SignupModal from "./SignupModal";
 import { motion, Variants } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { useDemo } from "@/context/DemoContext";
+import { Colors } from "@/lib/constants";
+import { RainbowGradient } from "../ui/RainbowGradient";
 
 const Pricing = () => {
   const { currentLanguage } = useDemo();
+
   const container: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -22,25 +25,26 @@ const Pricing = () => {
 
   const item: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4 } },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.6,
+      }
+    },
   };
 
   return (
-    <section id="pricing" className="py-32 bg-white relative overflow-hidden">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-gray-50/80 to-transparent -z-10 rounded-full blur-3xl opacity-50"></div>
-
-      <div className="container mx-auto px-6 max-w-6xl">
-        <div className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-gray-900">
+    <section id="pricing" className="py-24 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6">
               Invest in your{" "}
-              <motion.span
-                key={currentLanguage.id}
+              <span
                 style={{
                   backgroundImage: `linear-gradient(to right, ${currentLanguage.from}, ${currentLanguage.via}, ${currentLanguage.to})`,
                   WebkitBackgroundClip: "text",
@@ -50,115 +54,108 @@ const Pricing = () => {
                 className="font-bold"
               >
                 {currentLanguage.name} fluency.
-              </motion.span>
+              </span>
             </h2>
             <p className="text-xl text-gray-500 max-w-2xl mx-auto">
               Cheaper than one hour with a private tutor.
             </p>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-3 gap-8 lg:gap-12 items-start"
+        {/* Pricing Cards */}
+        <div
+          className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start"
         >
           {/* Free Tier */}
-          <motion.div
-            variants={item}
-            className="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+          <div
+            className="relative bg-white rounded-3xl border border-gray-100 shadow-sm lg:p-8 p-6"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold text-gray-900">M&G</h3>
-              <p className="text-gray-500 text-sm mb-4">
-                Meet and Greet Sophie
-              </p>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-bold tracking-tight">$0</span>
-                <span className="text-gray-400 font-medium">/ 7 days</span>
-              </div>
-              <p className="text-gray-500 text-sm mb-8">
-                Perfect for casual practice.
-              </p>
-              <ul className="space-y-4 mb-8">
-                {[
-                  "All languages included",
-                  "5 min/day practice",
-                  "Basic AI tutor feedback",
-                ].map((feature, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center space-x-3 text-sm font-medium text-gray-600"
-                  >
-                    <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-                      <Check className="w-3 h-3 text-gray-600" />
-                    </div>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <SignupModal triggerLocation="pricing_free">
-                <Button
-                  variant="outline"
-                  className="w-full rounded-xl h-12 border-gray-200 font-bold hover:bg-gray-50 hover:text-black hover:border-black transition-colors"
-                >
-                  Join Waitlist
-                </Button>
-              </SignupModal>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-black">M&G</h3>
             </div>
-          </motion.div>
+            <p className="text-gray-500 text-sm mb-6">
+              Meet and Greet Sophie
+            </p>
 
-          {/* Plus Tier - Highlighted */}
-          <motion.div
-            variants={item}
-            className="relative bg-black text-white rounded-[2rem] p-1 shadow-2xl transform md:-translate-y-6 group"
+            <div className="flex items-baseline gap-2 mb-6">
+              <span className="text-5xl font-bold tracking-tight text-black">$0</span>
+              <span className="text-gray-400 font-medium">/ 7 days</span>
+            </div>
+
+            <p className="text-gray-500 text-sm mb-8">
+              Perfect for casual practice.
+            </p>
+
+            <ul className="space-y-4 mb-10">
+              {[
+                "All languages included",
+                "5 min/day practice",
+                "Basic AI tutor feedback",
+              ].map((feature, i) => (
+                <li
+                  key={i}
+                  className="flex items-center space-x-3 text-sm font-medium text-gray-600"
+                >
+                  <div className="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3 stroke-[2.5]" />
+                  </div>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <SignupModal triggerLocation="pricing_free">
+              <RainbowBorder
+                className="w-full cursor-pointer"
+                borderWidth={2}
+                borderRadius={9999}
+                innerClassName="relative bg-white w-full h-12 px-12 py-3 flex items-center justify-center overflow-hidden"
+              >
+                <RainbowGradient className="absolute inset-0 opacity-0 hover:opacity-30 transition-opacity duration-300" />
+                <span className="relative z-10 font-medium text-black">Join Waitlist</span>
+              </RainbowBorder>
+            </SignupModal>
+          </div>
+
+          {/* Premium Tier - Highlighted */}
+          <div
+            className="relative rounded-3xl shadow-2xl transform md:-translate-y-4 group p-[2px]"
+            style={{
+              backgroundImage: `linear-gradient(to right, ${currentLanguage.from}, ${currentLanguage.via}, ${currentLanguage.to})`,
+            }}
           >
-            {/* Gradient Border Effect */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-800 to-black rounded-[2rem]"></div>
-
-            {/* Glow behind */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-purple-500/20 blur-3xl rounded-full opacity-50 group-hover:opacity-75 transition-opacity"></div>
-
-            <div className="relative bg-[#0A0A0A] rounded-[1.8rem] p-6 h-full flex flex-col overflow-hidden">
-              <motion.div
-                key={currentLanguage.id}
-                style={{
-                  backgroundImage: `linear-gradient(to right, ${currentLanguage.from}, ${currentLanguage.via}, ${currentLanguage.to})`,
-                }}
-                className={cn(
-                  "absolute top-0 right-0 left-0 h-1 rounded-t-[1.8rem] opacity-80",
-                )}
-              ></motion.div>
-
-              <div className="flex flex-col justify-between items-start gap-4 md:flex-row md:items-start">
+            <div className="relative bg-white rounded-[calc(1.5rem-2px)] lg:p-8 p-6 h-full">
+              <div className="flex items-start justify-between mb-6">
                 <div>
-                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                    Launch Pack{" "}
-                    <Sparkles className="w-4 h-4 text-[#FFD700] fill-current" />
+                  <h3 className="text-2xl font-bold text-black flex items-center gap-2 mb-2">
+                    Launch Pack
+                    <Sparkles className="w-5 h-5 text-[#FFD700] fill-current" />
                   </h3>
-                  <p className="text-gray-500 text-sm mb-8">
+                  <p className="text-gray-500 text-sm">
                     Sophie Close Friend
                   </p>
                 </div>
-                <div>
-                  <span className="bg-white/10 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-white/10">
-                    Most Popular
-                  </span>
-                </div>
+                <span
+                  style={{
+                    backgroundImage: `linear-gradient(to right, ${currentLanguage.from}, ${currentLanguage.via}, ${currentLanguage.to})`,
+                    borderColor: currentLanguage.from,
+                  }}
+                  className="bg-clip-text text-transparent text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider border-2"
+                >
+                  Popular
+                </span>
               </div>
 
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-5xl font-bold tracking-tight">$4.99</span>
+              <div className="flex items-baseline gap-2 mb-6">
+                <span className="text-6xl font-bold tracking-tight text-black">$4.99</span>
                 <span className="text-gray-400 font-medium">/ month</span>
               </div>
-              <p className="text-gray-400 text-sm mb-8">
+
+              <p className="text-gray-500 text-sm mb-8">
                 For serious learners who want to speak confidently.
               </p>
 
-              <ul className="space-y-4 mb-8 flex-1">
+              <ul className="space-y-4 mb-10">
                 {[
                   "1 language of choice",
                   "15 min/day practice",
@@ -167,76 +164,89 @@ const Pricing = () => {
                 ].map((feature, i) => (
                   <li
                     key={i}
-                    className="flex items-center space-x-3 text-sm font-medium text-gray-200"
+                    className="flex items-center space-x-3 text-sm font-medium text-gray-600"
                   >
-                    <motion.div
+                    <div
                       key={`check-${currentLanguage.id}`}
                       style={{
                         backgroundImage: `linear-gradient(to right, ${currentLanguage.from}, ${currentLanguage.via}, ${currentLanguage.to})`,
                       }}
-                      className={cn(
-                        "w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-white shadow-lg shadow-purple-900/50",
-                      )}
+                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-white shadow-md"
                     >
-                      <Check className="w-3 h-3" />
-                    </motion.div>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <SignupModal triggerLocation="pricing_plus">
-                <Button className="w-full rounded-xl h-14 bg-white text-black hover:bg-gray-200 font-bold text-lg shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-all">
-                  Start Free Trial
-                </Button>
-              </SignupModal>
-            </div>
-          </motion.div>
-
-          {/* Pro Tier */}
-          <motion.div
-            variants={item}
-            className="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold text-gray-900">SBB</h3>
-              <p className="text-gray-500 text-sm mb-8">Sophie Best Buddy</p>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-bold tracking-tight">$19</span>
-                <span className="text-gray-400 font-medium">/ month</span>
-              </div>
-              <p className="text-gray-500 text-sm mb-8">
-                Advanced coaching for business & exams.
-              </p>
-              <ul className="space-y-4 mb-8">
-                {[
-                  "Unlimited languages",
-                  "Unlimited time",
-                  "Advanced AI analytics",
-                  "Personalized learning paths",
-                ].map((feature, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center space-x-3 text-sm font-medium text-gray-600"
-                  >
-                    <div className="w-5 h-5 rounded-full bg-black flex items-center justify-center shrink-0 text-white">
-                      <Check className="w-3 h-3" />
+                      <Check className="w-3 h-3 stroke-[2.5]" />
                     </div>
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
-              <SignupModal triggerLocation="pricing_pro">
-                <Button
-                  variant="outline"
-                  className="w-full rounded-xl h-12 border-gray-200 font-bold hover:bg-gray-50 hover:text-black hover:border-black transition-colors"
+
+              <SignupModal triggerLocation="pricing_plus">
+                <button
+                  className="relative h-14 w-full p-0.5 rounded-full transition-all duration-300 group"
+                  style={{
+                    background: `linear-gradient(to right, ${currentLanguage.from}, ${currentLanguage.via}, ${currentLanguage.to})`,
+                  }}
                 >
-                  Join Waitlist
-                </Button>
+                  <div className="h-full px-12 rounded-full bg-white flex items-center justify-center font-medium text-black hover:bg-white/90 transition-colors">
+                    Start Free Trial
+                  </div>
+                </button>
               </SignupModal>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+
+          {/* Pro Tier */}
+          <div
+            className="relative bg-white rounded-3xl border border-gray-100 shadow-sm lg:p-8 p-6"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-black">SBB</h3>
+            </div>
+            <p className="text-gray-500 text-sm mb-6">
+              Sophie Best Buddy
+            </p>
+
+            <div className="flex items-baseline gap-2 mb-6">
+              <span className="text-5xl font-bold tracking-tight text-black">$19</span>
+              <span className="text-gray-400 font-medium">/ month</span>
+            </div>
+
+            <p className="text-gray-500 text-sm mb-8">
+              Advanced coaching for business & exams.
+            </p>
+
+            <ul className="space-y-4 mb-10">
+              {[
+                "Unlimited languages",
+                "Unlimited time",
+                "Advanced AI analytics",
+                "Personalized learning paths",
+              ].map((feature, i) => (
+                <li
+                  key={i}
+                  className="flex items-center space-x-3 text-sm font-medium text-gray-600"
+                >
+                  <div className="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3 stroke-[2.5]" />
+                  </div>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <SignupModal triggerLocation="pricing_pro">
+              <RainbowBorder
+                className="w-full cursor-pointer"
+                borderWidth={2}
+                borderRadius={9999}
+                innerClassName="relative bg-white w-full h-12 px-12 py-3 flex items-center justify-center overflow-hidden"
+              >
+                <RainbowGradient className="absolute inset-0 opacity-0 hover:opacity-30 transition-opacity duration-300" />
+                <span className="relative z-10 font-medium text-black">Join Waitlist</span>
+              </RainbowBorder>
+            </SignupModal>
+          </div>
+        </div>
       </div>
     </section>
   );

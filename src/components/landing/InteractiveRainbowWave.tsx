@@ -50,14 +50,14 @@ const InteractiveRainbowWave = ({ className, lineColor, useRainbow }: Interactiv
       if (!strokeStyle) {
         const gradient = ctx.createLinearGradient(0, 0, width, 0);
         if (useRainbow) {
-          // Full ROYGBIV Rainbow Gradient
-          gradient.addColorStop(0.0, "#FF0000");   // Red
-          gradient.addColorStop(0.17, "#FF7F00");  // Orange
-          gradient.addColorStop(0.33, "#FFFF00");  // Yellow
-          gradient.addColorStop(0.5, "#00FF00");   // Green
-          gradient.addColorStop(0.67, "#0000FF");  // Blue
-          gradient.addColorStop(0.83, "#4B0082");  // Indigo
-          gradient.addColorStop(1.0, "#9400D3");   // Violet
+          // Full ROYGBIV Rainbow Gradient (Updated Palette)
+          gradient.addColorStop(0.0, "#E81416");   // Red
+          gradient.addColorStop(0.17, "#FFA500");  // Orange
+          gradient.addColorStop(0.33, "#FAEB36");  // Yellow
+          gradient.addColorStop(0.5, "#79C314");   // Green
+          gradient.addColorStop(0.67, "#487DE7");  // Blue
+          gradient.addColorStop(0.83, "#4B369D");  // Indigo
+          gradient.addColorStop(1.0, "#70369D");   // Violet
         } else {
           gradient.addColorStop(0.0, currentLanguage.from);
           gradient.addColorStop(0.5, currentLanguage.via);

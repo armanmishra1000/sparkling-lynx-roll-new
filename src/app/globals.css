@@ -168,3 +168,18 @@
     radial-gradient(at 100% 0%, hsla(180, 100%, 95%, 1) 0px, transparent 50%),
     radial-gradient(at 50% 50%, hsla(270, 100%, 98%, 1) 0px, transparent 50%);
 }
+
+/* Custom Scrollbar Utility */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}

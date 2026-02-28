@@ -1,98 +1,110 @@
 "use client";
 
 import React from "react";
-import { Target, Mic, TrendingUp } from "lucide-react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { RainbowBorder } from "@/components/ui/RainbowBorder";
+import { RainbowText } from "@/components/ui/RainbowText";
+import { ArrowRight } from "lucide-react";
 
 const steps = [
   {
-    icon: Target,
+    step: "Step 01",
     title: "Context Injection",
-    subtitle: "Step 01",
     description: "Travel, work, dating, or arguing with your landlord. Sophie adapts the simulation to your actual life, not a textbook.",
-    color: "bg-pink-100 text-pink-600",
-    gradient: "from-pink-500 to-rose-500"
   },
   {
-    icon: Mic,
+    step: "Step 02",
     title: "Active Simulation",
-    subtitle: "Step 02",
     description: "No multiple choice. No tapping words. Just talk. Sophie responds at your level, pushing you slightly every time (i+1).",
-    color: "bg-blue-100 text-blue-600",
-    gradient: "from-blue-500 to-cyan-500"
   },
   {
-    icon: TrendingUp,
+    step: "Step 03",
     title: "Neural Rewriting",
-    subtitle: "Step 03",
     description: "Get instant corrections on pronunciation and style. Sophie rewrites your neural pathways before bad habits set in.",
-    color: "bg-purple-100 text-purple-600",
-    gradient: "from-purple-500 to-violet-500"
   }
 ];
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-32 relative overflow-hidden bg-white">
-      <div className="container mx-auto px-6 max-w-5xl relative z-10">
-        <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-gray-900">
+    <section id="how-it-works" className="py-24 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+
+        {/* Header */}
+        <div className="text-center mb-20">
+          <h2
+            className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6"
+          >
             The Fluency Loop
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto">
+          <p
+            className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed"
+          >
             From frozen to fluent in three cognitive steps.
           </p>
         </div>
 
-        <div className="relative">
-          {/* Central Line - Precisely Centered */}
-          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-100 md:-translate-x-1/2 overflow-hidden rounded-full">
-            {/* The Neural Pulse Animation */}
-            <motion.div 
-                animate={{ top: ["-20%", "120%"] }}
-                transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    repeatDelay: 1
-                }}
-                className="absolute left-0 w-full h-[150px] bg-gradient-to-b from-transparent via-[#FF0080] to-transparent opacity-75 blur-sm"
-            />
-          </div>
-          
-          <div className="space-y-12 md:space-y-24">
-            {steps.map((step, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex flex-col md:flex-row items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+          {/* Left Column: Sophie Image (Sticky on Desktop) */}
+          <div className="relative order-2 lg:order-1">
+            <div className="lg:sticky lg:top-32">
+              <div
+                className="relative z-10"
               >
-                {/* Connector Dot - Absolutely Centered on the Timeline */}
-                <div className={`hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}>
-                   <div className={`w-4 h-4 rounded-full border-2 border-white shadow-sm bg-gradient-to-br ${step.gradient} ring-4 ring-white`}></div>
-                </div>
+                {/* Soft background glow/shape */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-blue-50/50 rounded-full blur-3xl -z-10" />
 
-                {/* Icon Side */}
-                <div className={`w-full md:w-1/2 flex ${index % 2 !== 0 ? 'md:justify-start md:pl-24' : 'md:justify-end md:pr-24'} justify-start pl-0 mb-4 md:mb-0`}>
-                   <div className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center shadow-lg border-4 border-white ring-1 ring-black/5 relative z-10 group hover:scale-110 transition-transform duration-300`}>
-                      <step.icon className="w-6 h-6" />
-                   </div>
-                </div>
-
-                {/* Content Side */}
-                <div className={`w-full md:w-1/2 ${index % 2 !== 0 ? 'md:text-right md:pr-24' : 'md:text-left md:pl-24'} pl-16 md:pl-0`}>
-                   <span className={`inline-block text-xs font-bold uppercase tracking-wider mb-2 bg-gradient-to-r ${step.gradient} bg-clip-text text-transparent`}>
-                     {step.subtitle}
-                   </span>
-                   <h3 className="text-2xl font-bold mb-3 text-gray-900">{step.title}</h3>
-                   <p className="text-lg text-gray-500 leading-relaxed">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
+                <Image
+                  src="/SOPHIE no background.png"
+                  alt="Sophie AI Mascot"
+                  width={600}
+                  height={800}
+                  className="w-auto h-[500px] lg:h-[550px] mx-auto object-contain"
+                  priority
+                />
+              </div>
+            </div>
           </div>
+
+          {/* Right Column: Steps */}
+          <div className="flex flex-col gap-10 order-1 lg:order-2 lg:pt-10">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className="group"
+              >
+                <div className="flex flex-col items-start text-left pl-6 border-l-2 border-gray-100 group-hover:border-gray-200 transition-colors duration-300">
+                  <span className="text-sm font-bold tracking-wider mb-2 uppercase">
+                    <RainbowText text={step.step} />
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-black mb-4 group-hover:text-gray-900 transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+
+            {/* CTA */}
+            <div
+              className="pl-6"
+            >
+              <RainbowBorder
+                className="inline-block"
+                borderRadius={9999}
+                innerClassName="bg-transparent"
+              >
+                <button className="bg-black text-white py-4 px-8 rounded-full font-medium text-lg flex items-center gap-2 hover:bg-gray-900 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
+                  Start Talking
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </RainbowBorder>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

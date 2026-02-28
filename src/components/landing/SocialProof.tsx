@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { useDemo } from "@/context/DemoContext";
+import { demoLanguages } from "@/lib/demo-languages";
 
 const languages = [
   { name: "Español", font: "font-sans" },
@@ -26,35 +28,61 @@ const languages = [
 ];
 
 const SocialProof = () => {
+  const { currentLanguage } = useDemo();
+
   return (
-    <section className="py-12 border-b border-gray-100 bg-white overflow-hidden">
-      <div className="container mx-auto px-6 text-center mb-10">
-        <p className="text-sm font-semibold uppercase tracking-widest text-gray-400">
+    <section className="py-16 bg-white overflow-hidden">
+      <div className="container mx-auto px-4 text-center mb-10">
+        <p className="text-xl md:text-2xl text-black leading-relaxed">
           Powering the next generation of polyglots
         </p>
       </div>
 
       <div className="relative flex overflow-x-hidden group max-w-7xl mx-auto mask-linear-fade">
-        <div className="flex animate-marquee whitespace-nowrap gap-16 items-center">
-          {[...languages, ...languages].map((lang, i) => (
-            <span
-              key={i}
-              className={`text-2xl text-gray-300 font-medium hover:text-gray-900 transition-colors duration-500 cursor-default select-none grayscale hover:grayscale-0`}
-            >
-              {lang.name}
-            </span>
-          ))}
+        <div className="flex animate-marquee whitespace-nowrap gap-16 items-center pr-16">
+          {[...languages, ...languages].map((lang, i) => {
+            const config = demoLanguages.find(d => d.nativeName === lang.name);
+            const isActive = lang.name === currentLanguage.nativeName;
+
+            return (
+              <span
+                key={i}
+                className={`text-2xl font-medium transition-all duration-700 cursor-default select-none ${isActive ? "scale-110 opacity-100" : "opacity-60 hover:opacity-100 hover:scale-105"
+                  }`}
+                style={config ? {
+                  backgroundImage: `linear-gradient(to right, ${config.from}, ${config.via}, ${config.to})`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                } : {}}
+              >
+                {lang.name}
+              </span>
+            );
+          })}
         </div>
 
-        <div className="absolute top-0 flex animate-marquee2 whitespace-nowrap gap-16 items-center">
-          {[...languages, ...languages].map((lang, i) => (
-            <span
-              key={i}
-              className={`text-2xl text-gray-300 font-medium hover:text-gray-900 transition-colors duration-500 cursor-default select-none grayscale hover:grayscale-0`}
-            >
-              {lang.name}
-            </span>
-          ))}
+        <div className="absolute top-0 flex animate-marquee2 whitespace-nowrap gap-16 items-center pr-16">
+          {[...languages, ...languages].map((lang, i) => {
+            const config = demoLanguages.find(d => d.nativeName === lang.name);
+            const isActive = lang.name === currentLanguage.nativeName;
+
+            return (
+              <span
+                key={i}
+                className={`text-2xl font-medium transition-all duration-700 cursor-default select-none ${isActive ? "scale-110 opacity-100" : "opacity-60 hover:opacity-100 hover:scale-105"
+                  }`}
+                style={config ? {
+                  backgroundImage: `linear-gradient(to right, ${config.from}, ${config.via}, ${config.to})`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                } : {}}
+              >
+                {lang.name}
+              </span>
+            );
+          })}
         </div>
 
         {/* Fade edges */}
