@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { RainbowBorder } from "@/components/ui/RainbowBorder";
 import { marqueeLanguages } from "@/lib/marquee-languages";
-import CircleFlag from "./CircleFlag";
+import CircleFlag from "@/components/landing/shared/CircleFlag";
 
 const PX_PER_SECOND = 120;
 const MIN_DURATION_SECONDS = 12;

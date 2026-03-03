@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { useDemo } from "@/context/DemoContext";
 import { motion } from "framer-motion";
-import { RainbowBorder } from "../ui/RainbowBorder";
-import { RainbowGradient } from "../ui/RainbowGradient";
+import { RainbowBorder } from "@/components/ui/RainbowBorder";
+import { RainbowGradient } from "@/components/ui/RainbowGradient";
 
 const Footer = () => {
   const { currentLanguage } = useDemo();

@@ -4,11 +4,11 @@ import React from "react";
 import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RainbowBorder } from "@/components/ui/RainbowBorder";
-import SignupModal from "./SignupModal";
+import SignupModal from "@/components/landing/modals/SignupModal";
 import { motion, Variants } from "framer-motion";
 import { useDemo } from "@/context/DemoContext";
 import { Colors } from "@/lib/constants";
-import { RainbowGradient } from "../ui/RainbowGradient";
+import { RainbowGradient } from "@/components/ui/RainbowGradient";
 
 const Pricing = () => {
   const { currentLanguage } = useDemo();

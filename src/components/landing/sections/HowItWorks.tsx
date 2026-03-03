@@ -6,7 +6,7 @@ import { motion, type Variants } from "framer-motion";
 import { RainbowBorder } from "@/components/ui/RainbowBorder";
 import { RainbowText } from "@/components/ui/RainbowText";
 import { ArrowRight } from "lucide-react";
-import { RainbowGradient } from "../ui/RainbowGradient";
+import { RainbowGradient } from "@/components/ui/RainbowGradient";
 
 const steps = [
   {

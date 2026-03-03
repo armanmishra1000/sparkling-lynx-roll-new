@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mic, CheckCircle2, BarChart3, Sparkles, Rocket, MicIcon, ChevronUp, ChevronsUp } from "lucide-react";
-import InteractiveRainbowWave from "./InteractiveRainbowWave";
+import InteractiveRainbowWave from "@/components/landing/shared/InteractiveRainbowWave";
 import { RainbowIcon } from "@/components/ui/RainbowIcon";
 
 const tabs = [
