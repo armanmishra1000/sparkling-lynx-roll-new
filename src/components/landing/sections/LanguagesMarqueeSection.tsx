@@ -1,51 +1,19 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
-import { demoLanguages } from "@/lib/demo-languages";
+import { RainbowBorder } from "@/components/ui/RainbowBorder";
+import { marqueeLanguages } from "@/lib/marquee-languages";
+import CircleFlag from "@/components/landing/shared/CircleFlag";
 
 const PX_PER_SECOND = 120;
 const MIN_DURATION_SECONDS = 12;
-const FLAG_WIDTH = 20;
-const FLAG_HEIGHT = 20;
-
-const LANGUAGE_FLAG_CODES: Record<string, string> = {
-  es: "es",
-  de: "de",
-  en: "gb",
-  zh: "cn",
-  ja: "jp",
-  hi: "in",
-  yue: "hk",
-  fr: "fr",
-  it: "it",
-  pt: "pt",
-  ar: "sa",
-  ru: "ru",
-  ko: "kr",
-  ur: "pk",
-  ta: "lk",
-  bn: "bd",
-  sv: "se",
-  vi: "vn",
-  sw: "ke",
-  id: "id",
-};
 
 const LanguagesMarqueeSection = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [travelDistance, setTravelDistance] = useState<number>(0);
 
-  const languageItems = useMemo(
-    () =>
-      demoLanguages.map((language) => ({
-        id: language.id,
-        label: language.nativeName,
-        countryCode: LANGUAGE_FLAG_CODES[language.id] ?? "un",
-      })),
-    [],
-  );
+  const languageItems = useMemo(() => marqueeLanguages, []);
 
   useEffect(() => {
     const calculateDistance = () => {
@@ -77,11 +45,11 @@ const LanguagesMarqueeSection = () => {
   } as React.CSSProperties;
 
   return (
-    <section className="py-16 bg-white overflow-hidden" aria-label="Supported languages">
+    <section className="pb-16 bg-white overflow-hidden" aria-label="Supported languages">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="text-center mb-6">
+        <div className="text-center mb-10">
           <p className="text-2xl md:text-4xl font-semibold text-black">
-            Learn 20+ languages using Sophie
+            Learn any language in any language, no English required!
           </p>
         </div>
 
@@ -93,20 +61,16 @@ const LanguagesMarqueeSection = () => {
               style={trackStyle}
             >
               {languageItems.map((language) => (
-                <div
+                <RainbowBorder
                   key={language.id}
-                  className="flex shrink-0 items-center gap-4 rounded-full bg-white px-4 py-2"
+                  className="shrink-0"
+                  borderWidth={2}
+                  borderRadius={9999}
+                  innerClassName="flex items-center gap-3 px-4 py-2.5 sm:px-5 sm:py-3 bg-white"
                 >
-                  <Image
-                    src={`https://flagcdn.com/w40/${language.countryCode}.png`}
-                    alt={`${language.label} flag`}
-                    width={FLAG_WIDTH}
-                    height={FLAG_HEIGHT}
-                    className="sm:h-10 sm:w-10 h-8 w-8 rounded-full object-cover shadow-sm"
-                    unoptimized
-                  />
-                  <span className="font-medium text-black sm:text-xl text-lg">{language.label}</span>
-                </div>
+                  <CircleFlag countryCode={language.countryCode} size={40} alt={`${language.name} flag`} />
+                  <span className="text-lg sm:text-xl font-medium text-black">{language.name}</span>
+                </RainbowBorder>
               ))}
             </div>
           </div>

@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { useDemo } from "@/context/DemoContext";
 import { motion } from "framer-motion";
-import { RainbowBorder } from "../ui/RainbowBorder";
-import { RainbowGradient } from "../ui/RainbowGradient";
+import { RainbowBorder } from "@/components/ui/RainbowBorder";
+import { RainbowGradient } from "@/components/ui/RainbowGradient";
 
 const Footer = () => {
   const { currentLanguage } = useDemo();
@@ -38,8 +38,7 @@ const Footer = () => {
               </span>
             </Link>
             <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6">
-              Ready to find your <br />
-              authentic voice?
+              Just ask sophie
             </h3>
             <p className="text-xl text-gray-500 max-w-md mx-auto leading-relaxed">
               Join thousands of learners who have stopped memorizing and started
@@ -167,8 +166,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-200 pt-10 flex flex-col md:flex-row justify-between items-center">
           <p className="font-medium text-gray-500">
-            &copy; {new Date().getFullYear()} Sophie AI Inc. All rights
-            reserved.
+            &copy; 2026 Olguin Technologies FZCO. All rights reserved.
           </p>
 
           {/* <div className="flex items-center space-x-8 mt-6 md:mt-0 font-bold text-gray-500">

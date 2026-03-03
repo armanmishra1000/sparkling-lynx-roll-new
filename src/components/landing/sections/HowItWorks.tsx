@@ -6,7 +6,7 @@ import { motion, type Variants } from "framer-motion";
 import { RainbowBorder } from "@/components/ui/RainbowBorder";
 import { RainbowText } from "@/components/ui/RainbowText";
 import { ArrowRight } from "lucide-react";
-import { RainbowGradient } from "../ui/RainbowGradient";
+import { RainbowGradient } from "@/components/ui/RainbowGradient";
 
 const steps = [
   {
@@ -53,7 +53,7 @@ const itemVariants: Variants = {
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="relative overflow-hidden py-16">
+    <section id="how-it-works" className="relative overflow-hidden pb-16">
       <div className="container relative z-10 mx-auto max-w-7xl px-4">
         <motion.div
           className="mb-16 text-center"
@@ -129,11 +129,11 @@ const HowItWorks = () => {
                 ))}
               </ol>
 
-              <motion.div className="pl-14 pt-6" variants={itemVariants}>
+              <motion.button className="pl-14 pt-6 group inline-block transition-transform active:scale-95" variants={itemVariants}>
                 <RainbowBorder
                   borderRadius={9999}
                   borderWidth={2}
-                  innerClassName="relative bg-white h-14 px-12 py-3 flex items-center justify-center transition-colors overflow-hidden rounded-full"
+                  innerClassName="relative bg-white h-14 px-12 py-3 flex items-center justify-center overflow-hidden"
                 >
                   <RainbowGradient className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
                   <span className="relative z-10 flex items-center font-medium text-black">
@@ -141,7 +141,7 @@ const HowItWorks = () => {
                     <ArrowRight className="ml-2 w-5 h-5 mt-0.5" />
                   </span>
                 </RainbowBorder>
-              </motion.div>
+              </motion.button>
             </motion.div>
           </div>
         </div>

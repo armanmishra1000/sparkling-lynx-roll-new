@@ -54,14 +54,14 @@ const PersonalizationEngine = () => {
   const rainbowLine = `linear-gradient(90deg, ${Colors.rainbow.join(", ")})`;
 
   return (
-    <section className="py-24 overflow-hidden relative bg-white">
+    <section className="py-16 overflow-hidden relative bg-white">
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <div className="text-center lg:text-left mb-12 md:mb-16">
           <h2 className="mt-5 text-4xl md:text-5xl font-bold tracking-tight text-black max-w-3xl">
             A premium learning engine built around your behavior.
           </h2>
           <p className="mt-5 text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
-            Most apps reset every session. Sophie builds a persistent, evolving model of your language patterns. She knows what you know.
+            Most apps reset every session. Sophie builds a persistent, evolving model of your language patterns.
           </p>
         </div>
 

@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Menu, Sparkles } from "lucide-react";
-import SignupModal from "./SignupModal";
+import { Menu, MessageCircle } from "lucide-react";
 import { useDemo } from "@/context/DemoContext";
 
 const Navbar = () => {
   const { currentLanguage } = useDemo();
+  const whatsappUrl = "https://wa.me/971505814567";
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +63,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-1 bg-white/50 p-1.5 rounded-full border border-white/20 backdrop-blur-sm">
+        <div className="hidden lg:flex items-center gap-1 bg-white/50 p-1.5 rounded-full border border-white/20 backdrop-blur-sm">
           {navLinks.map((link) => (
             <Link 
               key={link.href}
@@ -75,22 +75,22 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           <Link href="/login" className="font-semibold text-black transition-colors">
             Log in
           </Link>
-          <SignupModal triggerLocation="navbar_desktop">
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full px-6 h-10 bg-black hover:bg-gray-900 text-white font-medium shadow-sm transition-all duration-300 text-sm border border-transparent">
-              <Sparkles className="w-3 h-3 mr-2 text-[#FFD700]" /> Early Access
+              <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
             </Button>
-          </SignupModal>
+          </a>
         </div>
 
         {/* Mobile Nav Toggle */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden text-black hover:bg-black/5 rounded-full">
+              <Button variant="ghost" size="icon" className="lg:hidden text-black hover:bg-black/5 rounded-full">
                 <Menu className="w-5 h-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
@@ -117,11 +117,16 @@ const Navbar = () => {
                     <Link href="/login" onClick={() => setIsOpen(false)} className="text-lg font-medium text-gray-600 hover:text-black px-4 py-3 rounded-xl hover:bg-gray-50">
                         Log in
                     </Link>
-                    <SignupModal triggerLocation="navbar_mobile">
-                        <Button className="w-full h-12 rounded-xl bg-black hover:bg-gray-900 text-white font-bold text-lg mt-4 shadow-lg">
-                            Get Early Access
-                        </Button>
-                    </SignupModal>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Button className="w-full h-12 rounded-xl bg-black hover:bg-gray-900 text-white font-bold text-lg mt-4 shadow-lg">
+                        <MessageCircle className="w-5 h-5 mr-2" /> WhatsApp
+                      </Button>
+                    </a>
                 </div>
             </SheetContent>
           </Sheet>

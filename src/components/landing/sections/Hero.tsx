@@ -3,11 +3,11 @@
 import React from "react";
 import { ArrowRight, Play, Sparkles, Wand2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import SignupModal from "./SignupModal";
-import VideoModal from "./VideoModal";
+import SignupModal from "@/components/landing/modals/SignupModal";
+import VideoModal from "@/components/landing/modals/VideoModal";
 import { trackEvent } from "@/lib/analytics";
-import RainbowWaveBackground from "./RainbowWaveBackground";
-import InteractiveRainbowWave from "./InteractiveRainbowWave";
+import RainbowWaveBackground from "@/components/landing/shared/RainbowWaveBackground";
+import InteractiveRainbowWave from "@/components/landing/shared/InteractiveRainbowWave";
 import { useDemo } from "@/context/DemoContext";
 import { RainbowBorder } from "@/components/ui/RainbowBorder";
 import { RainbowGradient } from "@/components/ui/RainbowGradient";

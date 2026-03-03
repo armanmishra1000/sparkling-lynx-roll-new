@@ -57,6 +57,7 @@ const FAQCard = ({ faq, index, currentLanguage }: FAQItemProps) => {
 
 const FAQ = () => {
   const { currentLanguage } = useDemo();
+  const whatsappUrl = "https://wa.me/971505814567";
 
   const faqs = [
     {
@@ -136,7 +137,9 @@ const FAQ = () => {
               className="inline-block group"
             >
               <a
-                href="#contact"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block transition-transform active:scale-95"
               >
                 <RainbowBorder

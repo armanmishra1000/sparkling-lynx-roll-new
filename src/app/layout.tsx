@@ -18,16 +18,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const oswald = localFont({
+const googleSans = localFont({
   src: [
-    { path: '../../public/fonts/Oswald-ExtraLight.ttf', weight: '200', style: 'normal' },
-    { path: '../../public/fonts/Oswald-Light.ttf', weight: '300', style: 'normal' },
-    { path: '../../public/fonts/Oswald-Regular.ttf', weight: '400', style: 'normal' },
-    { path: '../../public/fonts/Oswald-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../../public/fonts/Oswald-SemiBold.ttf', weight: '600', style: 'normal' },
-    { path: '../../public/fonts/Oswald-Bold.ttf', weight: '700', style: 'normal' },
+    { path: '../../public/fonts/GoogleSans-Regular.ttf', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/GoogleSans-Italic.ttf', weight: '400', style: 'italic' },
+    { path: '../../public/fonts/GoogleSans-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/GoogleSans-MediumItalic.ttf', weight: '500', style: 'italic' },
+    { path: '../../public/fonts/GoogleSans-SemiBold.ttf', weight: '600', style: 'normal' },
+    { path: '../../public/fonts/GoogleSans-SemiBoldItalic.ttf', weight: '600', style: 'italic' },
+    { path: '../../public/fonts/GoogleSans-Bold.ttf', weight: '700', style: 'normal' },
+    { path: '../../public/fonts/GoogleSans-BoldItalic.ttf', weight: '700', style: 'italic' },
   ],
-  variable: '--font-oswald',
+  variable: '--font-google-sans',
   display: 'swap',
 });
 
@@ -94,7 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${googleSans.variable} antialiased`}
       >
         <DemoProvider>
           <ScrollProgress />

@@ -194,7 +194,7 @@ import { Colors } from "@/lib/constants";
 
 const Features = () => {
   return (
-    <section id="features" className="py-24 md:py-32 bg-white">
+    <section id="features" className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="mb-20">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6">

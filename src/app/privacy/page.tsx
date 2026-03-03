@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "@/components/landing/Navbar";
-import Footer from "@/components/landing/Footer";
-import RainbowWaveBackground from "@/components/landing/RainbowWaveBackground";
+import Navbar from "@/components/landing/shared/Navbar";
+import Footer from "@/components/landing/shared/Footer";
+import RainbowWaveBackground from "@/components/landing/shared/RainbowWaveBackground";
 import { Shield, Lock, Eye, Server } from "lucide-react";
 
 export default function PrivacyPage() {
